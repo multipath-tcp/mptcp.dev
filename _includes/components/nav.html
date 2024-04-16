@@ -1,0 +1,55 @@
+{%- assign nav_pages = include.pages
+    | where_exp: "item", "item.title != nil"
+    | where_exp: "item", "item.nav_exclude != true" -%}
+
+{%- include sorted_pages.html pages = nav_pages -%}
+
+{%- assign first_level_pages = sorted_pages
+    | where_exp: "item", "item.parent == nil" -%}
+<img src="{{ site.url }}/assets/mptcp_logo.svg" width="50%" style="margin: -2rem auto 15px; display: block;">
+
+<ul class="nav-list">
+{%- for node in first_level_pages -%}
+  {%- assign node_lines = node.content | newline_to_br | split: "<br />" -%}
+  {%- assign nav_titles = node.nav_titles | default: false -%}
+  {%- assign titles_max_depth = node.titles_max_depth | default: 1 -%}
+  <li class="nav-list-item">
+    {%- if node.has_children or (node_lines.size > 1 and nav_titles) -%}
+    <button class="nav-list-expander btn-reset" aria-label="toggle items in {{ node.title }} category" aria-pressed="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+    </button>
+    {%- endif -%}
+    <a href="{{ node.url | relative_url }}" class="nav-list-link">{{ node.title }}</a>
+    {%- unless node.nav_titles == false -%}
+    {%- assign snippet = 0 -%}
+    {%- assign highlight = 0 -%}
+    <ul class="nav-list">
+      {%- for line in node_lines -%}
+        {%- assign line_start = line | slice: 0, 4 -%}
+        {%- if line_start contains '```' and snippet == 0 -%}
+          {%- assign snippet = 1 -%}
+        {%- elsif line_start contains '```' and snippet == 1 -%}
+          {%- assign snippet = 0 -%}
+        {%- endif -%}
+        {%- assign line_start = line | slice: 0, 13 -%}
+        {%- if line_start contains '{% highlight' and highlight == 0 -%}
+          {%- assign highlight = 1 -%}
+        {%- elsif line_start contains '{% endhighli' and highlight == 1 -%}
+          {%- assign highlight = 0 -%}
+        {%- endif -%}
+        {%- if line contains '#' and snippet == 0 and highlight == 0 -%}
+          {%- assign split_line = line | split: '#' -%}
+          {%- assign depth = split_line.size | minus: 1 -%}
+          {%- assign first = line | split: '#' | first | strip -%}
+          {%- if first.size == 0 and depth <= titles_max_depth -%}
+            {%- assign title = line | split: '#' | last | strip -%}
+            {%- assign url = node.url | relative_url -%}
+            <li class="nav-list-item"><a href="{{ url }}#{{ title | downcase | replace: ' ', '-'}}" class="nav-list-link">{{ title }}</a></li>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+    {%- endunless -%}
+  </li>
+{%- endfor -%}
+</ul>

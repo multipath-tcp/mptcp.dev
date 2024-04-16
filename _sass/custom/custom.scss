@@ -1,0 +1,54 @@
+p {
+    text-align: justify;
+}
+
+.color-main {
+    color: #7658ED;
+}
+
+.color-green {
+    color: #8DB342;
+}
+
+.color-yellow {
+    color: #d9b950;
+}
+
+.color-blue {
+    color: #507ED9;
+}
+
+.color-grey {
+    color: #746B98;
+}
+
+.color-red {
+    color: #d43a3a;
+}
+
+.color-orange {
+    color: #cc8e3d;
+}
+
+p > code {color: #544492;}
+li > code {color: #544492;}
+
+main img {
+    border-radius: 15px;
+    padding: 5px;
+}
+
+.ctsm:not([open]) summary::after{
+    display: inline;
+    content: '(click to see more)';
+    color: gray;
+    font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+    .color-main {
+        color: #2C84FA;
+    }
+    p > code {color: #668BBB;}
+    li > code {color: #668BBB;}
+}
