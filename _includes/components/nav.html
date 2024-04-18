@@ -6,7 +6,9 @@
 
 {%- assign first_level_pages = sorted_pages
     | where_exp: "item", "item.parent == nil" -%}
-<img src="{{ site.url }}/assets/mptcp_logo.svg" width="50%" style="margin: -2rem auto 15px; display: block;">
+<a href="{{ site.baseurl }}/">
+  <img src="{{ site.baseurl }}/assets/mptcp_logo.svg" width="50%" style="margin: -2rem auto 15px; display: block;">
+</a>
 
 <ul class="nav-list">
 {%- for node in first_level_pages -%}
