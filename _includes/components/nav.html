@@ -46,7 +46,8 @@
           {%- if first.size == 0 and depth <= titles_max_depth -%}
             {%- assign title = line | split: '#' | last | strip -%}
             {%- assign url = node.url | relative_url -%}
-            <li class="nav-list-item"><a href="{{ url }}#{{ title | downcase | replace: ' ', '-'}}" class="nav-list-link">{{ title }}</a></li>
+            {%- assign anchor = title | strip_html | slugify: 'raw' | remove: '&' | remove: '?' | remove: '/' | remove: '.' -%}
+            <li class="nav-list-item"><a href="{{ url }}#{{ anchor }}" class="nav-list-link">{{ title }}</a></li>
           {%- endif -%}
         {%- endif -%}
       {%- endfor -%}
