@@ -144,7 +144,7 @@ Note that it might be necessary to manually define `IPPROTO_MPTCP`, because old
 libC versions might not have it. See the [Implementation Guide](implementation.html)
 for more details about that.
 
-## <code>IPPROTO_MPTCP</code> is not defined
+## Why is <code>IPPROTO_MPTCP</code> not defined?
 Since a program is not always compiled on the system it runs on, it is
 recommended to manually define `IPPROTO_MPTCP` if the symbol is not already
 defined:
@@ -153,3 +153,49 @@ defined:
 #define IPPROTO_MPTCP 262
 #endif
 ```
+
+## How to check if MPTCP is working?
+
+The easiest way is to check with a special test server that will confirm MPTCP
+is being used and return that info to the client, e.g.
+```bash
+$ mptcpize run curl http://test.multipath-tcp.org:5000
+You are using MPTCP.
+```
+
+It is also possible to use tools like `ss -Mia`, `tcpdump` and `wireshark`, or
+check counters with `nstat` or directly in `/proc/net/netstat`.
+
+## How to bootstrap a kernel development environment?
+
+If you are interested in contributing to MPTCP in the Linux kernel, a
+[Docker image](https://docs.docker.com) can be used to create a basic kernel
+development environment. Download the
+[kernel source code](https://github.com/multipath-tcp/mptcp_net-next/) and then
+start the container:
+```bash
+$ cd [kernel source code]
+$ docker run -v "${PWD}:${PWD}:rw" -w "${PWD}" --privileged --rm -it \
+    --pull always mptcp/mptcp-upstream-virtme-docker:latest \
+    manual-normal
+```
+
+More details on the
+[MPTCP Upstream Virtme Docker](https://github.com/multipath-tcp/mptcp-upstream-virtme-docker#readme)
+page.
+
+## High number of retransmissions / dropped packets at the NIX RX queue level?
+
+Even with MPTCP, subflow processing is done by the TCP stack. The main
+difference with plain TCP is that this processing does not use the socket
+backlog and always happens in second-level interrupt handlers called
+[*bottom half*](https://en.wikipedia.org/wiki/Interrupt_handler) (BH) in Linux.
+When the host is under heavy load, BH processing happens in `ksoftirqd` context,
+and there is some latency between the `ksoftirqd` scheduling and the moment
+`ksoftirqd` actually runs the handler. This depends on process scheduler
+decisions (and settings).
+
+A way to reduce these retransmissions and avoid dropped packets at the NIC level
+is to increase the NIC RX queue. See issue
+[#253](https://github.com/multipath-tcp/mptcp_net-next/issues/253) for more
+details.
