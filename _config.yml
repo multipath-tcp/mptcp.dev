@@ -30,6 +30,9 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://www.mptcp.dev" # the base hostname & protocol for your site, e.g. http://example.com
 
+plugins:
+  - jekyll-sitemap
+
 theme: just-the-docs
 favicon_ico: "/assets/mptcp_logo.svg"
 

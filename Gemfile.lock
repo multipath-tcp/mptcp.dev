@@ -293,6 +293,7 @@ DEPENDENCIES
   http_parser.rb (~> 0.6.0)
   jekyll-feed (~> 0.12)
   jekyll-reload
+  jekyll-sitemap
   just-the-docs
   kramdown-parser-gfm
   tzinfo (>= 1, < 3)
