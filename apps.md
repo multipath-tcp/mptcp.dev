@@ -36,6 +36,12 @@ can be forced to use it by following [these instructions](setup.html#force-appli
 | SSH | [OpenSSH-281.40.2](https://github.com/apple-oss-distributions/OpenSSH) | `applemultipath` option |
 | [Shellfish](https://secureshellfish.app) | ? | Settings / Advanced / 🌍 Multipath TCP |
 
+## Misc.
+
+| Name | Version |
+| --- | --- |
+| [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 |
+
 ## Add native MPTCP support
 
 Do not hesitate to add native MPTCP support in more apps! For some ideas, feel
