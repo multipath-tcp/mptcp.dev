@@ -6,6 +6,8 @@ nav_titles: true
 titles_max_depth: 2
 ---
 
+## Introduction
+
 Multipath TCP or [MPTCP](https://en.wikipedia.org/wiki/Multipath_TCP) is an
 extension to the standard
 [TCP](https://en.wikipedia.org/wiki/Transmission_Control_Protocol) and is
@@ -42,6 +44,9 @@ graph TD;
     linkStyle 3 stroke:green;
 ```
 
+
+## Concepts
+
 Technically, when a new socket is created with the `IPPROTO_MPTCP` protocol
 (Linux-specific), a *subflow* (or *path*) is created. This *subflow* consists of
 a regular TCP connection that is used to transmit data through one interface.
@@ -55,26 +60,29 @@ it, the returned `SYN+ACK` packet will not contain MPTCP options in the TCP
 *option* field. In that case, the connection will be "downgraded" to plain TCP,
 and it will continue with a single path.
 
-This behavior is made possible by two internal components:
+This behavior is made possible by two internal components: the path manager, and
+the packet scheduler.
 
-* **Path Manager**: Manages *subflows* from creation to deletion, and also
-  address announcements. Typically, it is the client side that initiates
-  subflows, and the server side that announces additional addresses via the
-  `ADD_ADDR` and `REMOVE_ADDR` options.
+### Path Manager
 
-  ```mermaid
-  graph LR;
-      C_1(<div style="display: inline-block; min-width: 35px"><font size="7">fa:fa-mobile</font></div>)
-      S_1((<div style="display: inline-block; min-width: 60px"><font size="7">fa:fa-cloud</font></div>))
+The Path Manager is in charge of *subflows*, from creation to deletion, and also
+address announcements. Typically, it is the client side that initiates subflows,
+and the server side that announces additional addresses via the `ADD_ADDR` and
+`REMOVE_ADDR` options.
 
-      C_1 -. "Potential subflow" -.- S_1
-      C_1 <== "Initial subflow" ==> S_1
-      C_1 ~~~|"Subflows creation"| C_1
-      S_1 ~~~|"Addresses announcement"| S_1
+```mermaid
+graph LR;
+    C_1(<div style="display: inline-block; min-width: 35px"><font size="7">fa:fa-mobile</font></div>)
+    S_1((<div style="display: inline-block; min-width: 60px"><font size="7">fa:fa-cloud</font></div>))
 
-      linkStyle 0 stroke:orange;
-      linkStyle 1 stroke:green;
-  ```
+    C_1 -. "Potential subflow" -.- S_1
+    C_1 <== "Initial subflow" ==> S_1
+    C_1 ~~~|"Subflows creation"| C_1
+    S_1 ~~~|"Addresses announcement"| S_1
+
+    linkStyle 0 stroke:orange;
+    linkStyle 1 stroke:green;
+```
 
 {: .note}
 As of Linux v5.19, there are two path managers, controlled by the `net.mptcp.pm_type`
@@ -83,29 +91,32 @@ all the connections (see: `ip mptcp`) ; and the userspace one (type `1`),
 controlled by a userspace daemon (i.e. [`mptcpd`](https://mptcpd.mptcp.dev/))
 where different rules can be applied for each connection.
 
-* **Packet Scheduler**: In charge of selecting which available *subflow(s)* to
-  use to send the next data packet. It can decide to maximize the use of the
-  available bandwidth, only to pick the path with the lower latency, or any
-  other policy depending on the configuration.
+### Packet Scheduler
 
-  ```mermaid
-  graph LR;
-      A_2(<div style="display: inline-block; min-width: 40px"><font size="7">fa:fa-user</font></div>)
+The Packet Scheduler is in charge of selecting which available *subflow(s)* to
+use to send the next data packet. It can decide to maximize the use of the
+available bandwidth, only to pick the path with the lower latency, or any other
+policy depending on the configuration.
 
-      PS{Packet<br />Scheduler}
+```mermaid
+graph LR;
+    A_2(<div style="display: inline-block; min-width: 40px"><font size="7">fa:fa-user</font></div>)
 
-      I_21(subflow 1)
-      I_22(subflow 2)
+    PS{Packet<br />Scheduler}
 
-      A_2 == "<div style='display: inline-block; min-width: 50px'>fa:fa-box fa:fa-box fa:fa-box</div>" ==> PS
-      PS -- "<div style='display: inline-block; min-width: 32px'>fa:fa-box fa:fa-box</div>" --> I_21
-      PS -- "<div style='display: inline-block; min-width: 14px'>fa:fa-box</div>" --> I_22
-      PS ~~~|"Packets distribution between subflows"| PS
-  ```
+    I_21(subflow 1)
+    I_22(subflow 2)
+
+    A_2 == "<div style='display: inline-block; min-width: 50px'>fa:fa-box fa:fa-box fa:fa-box</div>" ==> PS
+    PS -- "<div style='display: inline-block; min-width: 32px'>fa:fa-box fa:fa-box</div>" --> I_21
+    PS -- "<div style='display: inline-block; min-width: 14px'>fa:fa-box</div>" --> I_22
+    PS ~~~|"Packets distribution between subflows"| PS
+```
 
 {: .note}
 As of Linux v6.8, there is only one packet scheduler, controlled by sysctl knobs
 in `net.mptcp`.
+
 
 ## Features
 
@@ -123,6 +134,7 @@ See the
 [ChangeLog](https://github.com/multipath-tcp/mptcp_net-next/wiki/#changelog)
 for more details.
 
+
 ## Communication
 
 * Mailing List: [mptcp@lists.linux.dev](mailto:mptcp@lists.linux.dev) (and [archives](https://lore.kernel.org/mptcp))
@@ -130,6 +142,7 @@ for more details.
 * Online [Meetings](https://github.com/multipath-tcp/mptcp_net-next/wiki/Meetings)
 * [Blog](https://blog.mptcp.dev)
 * [Fediverse <i class="fa-brands fa-mastodon"></i>](https://social.kernel.org/mptcp)
+
 
 ## Projects
 
@@ -148,6 +161,7 @@ for more details.
     starting with v1.40.
   * [Multipath TCP applications](https://github.com/mptcp-apps/): A project to
     coordinate MPTCP updates for popular TCP applications.
+
 
 ## Kernel Development
 
