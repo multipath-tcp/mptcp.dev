@@ -125,7 +125,7 @@ for more details.
 
 ## Communication
 
-* Mailing List: mptcp@lists.linux.dev (and [archives](https://lore.kernel.org/mptcp))
+* Mailing List: [mptcp@lists.linux.dev](mailto:mptcp@lists.linux.dev) (and [archives](https://lore.kernel.org/mptcp))
 * IRC: [#mptcp](https://web.libera.chat/?nick=mptcp-dev-guest?#mptcp) on libera.chat
 * Online [Meetings](https://github.com/multipath-tcp/mptcp_net-next/wiki/Meetings)
 
