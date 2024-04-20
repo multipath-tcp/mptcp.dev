@@ -14,7 +14,7 @@ extension to the standard
 described in [RFC 8684](https://www.rfc-editor.org/rfc/rfc8684.html). It allows
 a device to make use of multiple interfaces at once to send and receive TCP
 packets over a single MPTCP connection. MPTCP can aggregate the bandwidth of
-multiple interfaces or prefer the one with lowest latency, it also allows a
+multiple interfaces or prefer the one with the lowest latency, it also allows a
 fail-over if one path is down, and the traffic is seamlessly reinjected on other
 paths.
 
@@ -43,6 +43,19 @@ graph TD;
     linkStyle 2 stroke:red;
     linkStyle 3 stroke:green;
 ```
+
+### Use cases
+
+Thanks to MPTCP, being able to use multiple paths in parallel or simultaneously
+brings new use-cases, compared to TCP:
+
+- Seamless handovers: switching from one path to another while preserving
+  established connections, e.g. Apple is using Multipath TCP on smartphones
+  mainly for this reason since 2013.
+- Best network selection: using the "best" available path depending on some
+  conditions, e.g. latency, losses, cost, bandwidth, etc.
+- Network aggregation: using multiple paths at the same time to have a higher
+  throughput, e.g. to combine fixed and mobile networks to send files faster.
 
 
 ## Concepts
