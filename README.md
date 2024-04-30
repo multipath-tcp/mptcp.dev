@@ -17,6 +17,7 @@ website for those who want to contribute.
 - `faq`, for Frequently Asked Questions.
 - `apps`, the list of currently apps supporting MPTCP natively.
 - `details` contains detailed explanations of the kernel implementation.
+- `contributing`, details for those working on the project.
 
 ## Front matter
 At the top of all pages a section between two `---` lines contains information
