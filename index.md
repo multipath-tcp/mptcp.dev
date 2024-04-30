@@ -187,3 +187,4 @@ for more details.
 * [Continuous Integration](https://github.com/multipath-tcp/mptcp_net-next/wiki/CI)
 * [Testing](https://github.com/multipath-tcp/mptcp_net-next/wiki/Testing)
 * [Issue tracker](https://github.com/multipath-tcp/mptcp_net-next/issues)
+* [Contributing](contributing.html)

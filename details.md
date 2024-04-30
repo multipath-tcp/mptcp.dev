@@ -18,9 +18,9 @@ where the behavior is modified using TCP-ULP.
 MPTCP listen sockets will create "plain" *accepted* TCP sockets if the
 connection request from the client didn't ask for MPTCP.
 
-If you are interested by **contributing to the kernel**, please check this
-[wiki](https://github.com/multipath-tcp/mptcp_net-next/wiki/Contributing) page
-and this [MPTCP Upstream Virtme Docker](https://github.com/multipath-tcp/mptcp-upstream-virtme-docker)
+If you are interested by **contributing to the kernel**, please check the
+[Contributing](contributing.html) page and this
+[MPTCP Upstream Virtme Docker](https://github.com/multipath-tcp/mptcp-upstream-virtme-docker)
 repo.
 
 This page needs to be improved, feel free to
