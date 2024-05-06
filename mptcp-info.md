@@ -272,12 +272,9 @@ therefore recommended to use these last two fields.
 
 Since kernel v5.16, `getsockopt(MPTCP_INFO)` can be used to check if an
 MPTCP connection fell back to TCP. If this `getsockopt()` call returns `-1`,
-and `errno` is set to `EOPNOTSUPP` (v4) or `ENOPROTOOPT` (v6), it means the
-MPTCP connection has fallen back to TCP at some point. In case of a client
-(`connect()`), or for a server to check if an established connection has later
-fallen back to TCP (should be rare), it is also required to check if the
-`mptcpi_flags` field from the `mptcp_info` structure has the
-`MPTCP_INFO_FLAG_FALLBACK` bit (`0x1`) set.
+and `errno` is set to `EOPNOTSUPP` (v4) or `ENOPROTOOPT` (v6), it either means:
+- the MPTCP connection has fallen back to TCP at some point
+- or the kernel is older than v5.16.
 
 {: .warning}
 On kernels < v5.16, `getsockopt(MPTCP_INFO)` will always fail, and `errno` will
@@ -290,24 +287,29 @@ the protocol will be set to `IPPROTO_MPTCP`. This can be used on kernels < 5.16
 too.
 
 <details markdown="block">
-<summary>Example in C (<b>client only</b>) </summary>
+<summary>Example in C (client or server) </summary>
 
 {: .warning}
-**Client only**: It requires **kernel >= 5.16**
+Requires **kernel >= 5.16**: it works with clients and servers, and for fallback
+that would have happened after the establishment of the connection (should be
+rare).
 
 ```c
 #define MPTCP_INFO 1
-#define MPTCP_INFO_FLAG_FALLBACK 1
-bool socket_is_mptcp(int client_fd)
+bool socket_is_mptcp(int accept_fd)
 {
-    socklen_t len = sizeof(struct mptcp_info);
-    struct mptcp_info info = { 0 };
+    socklen_t len = 0:
 
-    if (getsockopt(client_fd, SOL_MPTCP, MPTCP_INFO, &info, &len) < 0) {
-        perror("kernel < v5.16: we cannot tell (workaround: use NetLink or ss -Mi)");
-        return true;
+    /* kernel < 5.16 will always fail with errno set to EOPNOTSUPP (v4) or ENOPROTOOPT (v6) */
+    if (kernel_version_lower(5, 16))
+        return true; /* This method cannot be used: check the next example */
+
+    if (getsockopt(accept_fd, SOL_MPTCP, MPTCP_INFO, NULL, &len) < 0) {
+        if (errno != EOPNOTSUPP && errno != ENOPROTOOPT)
+            perror("getsockopt(MPTCP_INFO)"); /* Should not happen */
+        return false; /* A fallback happened */
     }
-    return (info.mptcpi_flags & MPTCP_INFO_FLAG_FALLBACK) == 0;
+    return true;
 }
 ```
 </details> {: .ctsm}
@@ -316,7 +318,9 @@ bool socket_is_mptcp(int client_fd)
 <summary>Example in C (<b>server only</b>: MPTCP requested?) </summary>
 
 {: .warning}
-**Server only**: it **only** checks if the client requested to use MPTCP
+**Server only**: it **only** checks if the client requested to use MPTCP. Note
+that even if it should be rare, a fallback can happened later during the
+connection.
 
 ```c
 bool client_requested_mptcp(int accept_fd)
@@ -329,37 +333,6 @@ bool client_requested_mptcp(int accept_fd)
         return true; /* cannot tell */
     }
     return protocol == IPPROTO_MPTCP; /* Always true on 'connect' and 'listen' sockets */
-}
-```
-</details> {: .ctsm}
-
-<details markdown="block">
-<summary>Example in C (<b>server only</b>: full solution) </summary>
-
-{: .warning}
-**Server only**: Requires **kernel >= 5.16**, it also checks for fallback
-that would have happened after the establishment of the connection (should be
-rare)
-
-```c
-#define MPTCP_INFO 1
-#define MPTCP_INFO_FLAG_FALLBACK 1
-bool socket_is_mptcp(int accept_fd)
-{
-    socklen_t len = sizeof(struct mptcp_info);
-    struct mptcp_info info = { 0 };
-
-    /* kernel < 5.16 will always fail with errno set to EOPNOTSUPP (v4) or ENOPROTOOPT (v6) */
-    if (kernel_version_lower(5, 16))
-        return true; /* This method cannot be used: check the next example */
-
-    if (getsockopt(accept_fd, SOL_MPTCP, MPTCP_INFO, &info, &len) < 0) {
-        if (errno != EOPNOTSUPP && errno != ENOPROTOOPT)
-            perror("getsockopt(MPTCP_INFO)"); /* Should not happen */
-        return false; /* The client didn't ask to use MPTCP */
-    }
-    /* The connection has been established in MPTCP, check for fallback later (rare) */
-    return (info.mptcpi_flags & MPTCP_INFO_FLAG_FALLBACK) == 0;
 }
 ```
 </details> {: .ctsm}
