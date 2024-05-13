@@ -150,10 +150,13 @@ for more details.
 
 ## Communication
 
-* Mailing List: [mptcp@lists.linux.dev](mailto:mptcp@lists.linux.dev)
-  ([archives](https://lore.kernel.org/mptcp) -
-   [subscribe](mailto:mptcp+subscribe@lists.linux.dev) -
-   [info](https://subspace.kernel.org/lists.linux.dev.html))
+* Mailing List: [mptcp@lists.linux.dev](mailto:mptcp@lists.linux.dev) (**plain
+  text only**):
+  * [Archives](https://lore.kernel.org/mptcp)
+  * [Info](https://subspace.kernel.org/lists.linux.dev.html)
+  * Subscribe by sending an empty email **in plain text** to
+    [mptcp+subscribe@lists.linux.dev](mailto:mptcp+subscribe@lists.linux.dev),
+    and by replying to the challenge email.
 * IRC: [#mptcp](https://web.libera.chat/?nick=mptcp-dev-guest?#mptcp) on libera.chat
 * Online [Meetings](https://github.com/multipath-tcp/mptcp_net-next/wiki/Meetings)
 * [Blog](https://blog.mptcp.dev)
