@@ -159,7 +159,7 @@ defined:
 The easiest way is to check with a special test server that will confirm MPTCP
 is being used and return that info to the client, e.g.
 ```bash
-$ mptcpize run curl http://test.multipath-tcp.org:5000
+$ mptcpize run curl https://check.mptcp.dev
 You are using MPTCP.
 ```
 
