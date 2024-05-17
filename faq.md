@@ -39,11 +39,11 @@ being used by default. </summary>
       lowest-latency path "wins". (Note: The MPTCP protocol allows for this but
       the Linux packet scheduler does not yet implement such a feature)
     - etc.
-  We recommend
-  enabling MPTCP on servers by default to let users choose whether to use
-  MPTCP. When clients don't request to use MPTCP, server applications will
-  create "plain" TCP sockets within the kernel when connections are `accept`ed,
-  making the performance impact minimal.
+
+  We recommend enabling MPTCP on servers by default to let users choose whether
+  to use MPTCP. When clients don't request to use MPTCP, server applications
+  will create "plain" TCP sockets within the kernel when connections are
+  `accept`ed, making the performance impact minimal.
 </details> {: .ctsm}
 
 ## Are there any performance impacts when using MPTCP?
