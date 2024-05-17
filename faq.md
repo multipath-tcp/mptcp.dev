@@ -73,15 +73,20 @@ compatible with KTLS.
 MPTCP extends beyond to various platforms including macOS. But... </summary>
 
 The use of MPTCP on macOS differs from Linux:
+- Its usage is limited to the client side, to establish new MPTCP connections
+  only.
 - It is most straightforward when applications use the system's
-  [frameworks](https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp)
-- There is some documentation for
+  [frameworks](https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp),
+  which can be done in
+  [C language](https://developer.apple.com/documentation/network) as well, see
+  this [example with OpenSSH](https://github.com/apple-oss-distributions/OpenSSH/blob/9b6202341ee10b42e7391229ad5c0f2eb8aea8af/openssh/sshconnect.c#L487-L489).
+- There is some documentation for the
   [connectx](https://opensource.apple.com/source/xnu/xnu-7195.81.3/bsd/man/man2/connectx.2.auto.html)
-  and
-  [disconnectx](https://opensource.apple.com/source/xnu/xnu-7195.81.3/bsd/man/man2/disconnectx.2.auto.html)
-  system calls that mention multipath support, however it is not clear what is
-  required to use these interfaces. There does not appear to be public example
-  code.
+  system call that mentions multipath support if the socket has been created with
+  the `AF_MULTIPATH` (`39`) domain. However, it is not clear what is required to
+  use these interfaces. It appears that MPTCP connections can be created, but
+  additional subflows cannot be created. There is no public
+  example code from Apple, so this method doesn't seem to be recommended.
 
 On FreeBSD, there was an ongoing implementation, but that was years ago, and it
 is not working today according to
