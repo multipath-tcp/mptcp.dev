@@ -57,14 +57,20 @@ It is also important to note that, when clients don't request to use MPTCP,
 server applications will create "plain" TCP sockets within the kernel when
 connections are `accept`ed, making the performance impact minimal.
 
-## Are there unsupported TCP socket options?
-MPTCP supports most TCP socket options. It is possible some less-common ones are
-not supported. If it is the case, please document your use-case in a new
-[issue](https://github.com/multipath-tcp/mptcp_net-next/issues/).
+## Are there unsupported socket options?
+On Linux, MPTCP supports most socket options handled by TCP. It is possible some
+less common ones are not supported. If it is the case, please document your
+use-case in a new
+[issue](https://github.com/multipath-tcp/mptcp_net-next/issues/), and/or share
+patches.
 
 For example, MPTCP in the Linux kernel is
 [currently](https://github.com/multipath-tcp/mptcp_net-next/issues/480) not
 compatible with KTLS.
+
+Generally, the same value is propagated to all subflows, including the ones
+created after the calls to `setsockopt()`. eBPF can be used to set different
+values per subflow.
 
 ## What are the supported operating systems?
 <details markdown="block">
