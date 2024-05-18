@@ -69,7 +69,8 @@ For example, MPTCP in the Linux kernel is
 compatible with KTLS.
 
 Generally, the same value is propagated to all subflows, including the ones
-created later. eBPF can be used to set different values per subflows.
+created after the calls to `setsockopt()`. eBPF can be used to set different
+values per subflow.
 
 ## What are the supported operating systems?
 <details markdown="block">
