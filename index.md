@@ -14,7 +14,7 @@ extension to the standard
 described in [RFC 8684](https://www.rfc-editor.org/rfc/rfc8684.html). It allows
 a device to make use of multiple interfaces at once to send and receive TCP
 packets over a single MPTCP connection. MPTCP can aggregate the bandwidth of
-multiple interfaces or prefer the one with the lowest latency, it also allows a
+multiple interfaces or prefer the one with the lowest latency. It also allows a
 fail-over if one path is down, and the traffic is seamlessly reinjected on other
 paths.
 
