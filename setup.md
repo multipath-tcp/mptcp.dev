@@ -185,6 +185,14 @@ ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
   notification from the other peer -- that will result in the creation of
   subflows, typically only for the client side (default is 0).
 
+{: .note}
+It is possible to reach the limits with fewer established subflows than
+expected, e.g. when new subflow requests cannot reach the other peer. In case of
+problem, please increase the limits, use `ss -Mai` to check the counters, and
+modify the routing or firewall rules to avoid using certain paths between
+specific IP addresses. For example, in a lab setup with dedicated links use
+specific routes rather than letting the kernel select the default route.
+
 ### Manual routing configuration
 
 <details markdown="block">
