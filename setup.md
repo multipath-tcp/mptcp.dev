@@ -157,19 +157,6 @@ Optionally, the following flags can be set:
 
 The IP address is an IPv4 or IPv6 address.
 
-#### Limits
-
-It is also important to make sure the limits are high enough:
-
-```sh
-ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
-```
-
-`subflows` is the limit of created and accepted subflows (paths), and
-`add_addr_accepted` is the limit of accepted `ADD_ADDR` -- IP address
-notification from the other peer -- that will result in the creation of
-subflows.
-
 #### Example
 
 - Servers can announce extra IP addresses:
@@ -183,6 +170,19 @@ ip mptcp endpoint add 10.2.2.2 dev eth0 signal
 ```sh
 ip mptcp endpoint add 100.64.1.134 dev usb0 subflow backup
 ```
+
+#### Limits
+
+It is also important to make sure the limits are high enough:
+
+```sh
+ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
+```
+
+`subflows` is the limit of created and accepted subflows (paths), and
+`add_addr_accepted` is the limit of accepted `ADD_ADDR` -- IP address
+notification from the other peer -- that will result in the creation of
+subflows.
 
 ### Manual routing configuration
 
