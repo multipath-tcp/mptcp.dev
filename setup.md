@@ -174,14 +174,14 @@ subflows.
 
 - Servers can announce extra IP addresses:
 ```sh
-ip mptcp endpoint add 10.2.2.2 signal
+ip mptcp endpoint add 10.2.2.2 dev eth0 signal
 ```
 
 - Clients can create additional subflows from a cellular interface, and flag
   this subflow as "backup", to be used to carry data only if the main path is
   unavailable:
 ```sh
-ip mptcp endpoint add 100.64.1.134 subflow backup
+ip mptcp endpoint add 100.64.1.134 dev usb0 subflow backup
 ```
 
 ### Manual routing configuration
