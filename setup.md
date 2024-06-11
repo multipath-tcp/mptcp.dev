@@ -179,10 +179,11 @@ It is also important to make sure the limits are high enough:
 ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
 ```
 
-`subflows` is the limit of created and accepted subflows (paths), and
-`add_addr_accepted` is the limit of accepted `ADD_ADDR` -- IP address
-notification from the other peer -- that will result in the creation of
-subflows.
+- `subflows` is the limit of created and accepted subflows (paths), for both the
+  client and server sides (default is 2).
+- `add_addr_accepted` is the limit of accepted `ADD_ADDR` -- IP address
+  notification from the other peer -- that will result in the creation of
+  subflows, typically only for the client side (default is 0).
 
 ### Manual routing configuration
 
