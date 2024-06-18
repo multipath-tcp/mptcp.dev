@@ -109,6 +109,54 @@ modify the routing or firewall rules to avoid using certain paths between
 specific IP addresses. For example, in a lab setup with dedicated links, use
 specific routes rather than letting the kernel select the default route.
 
+### Behavior
+
+By default, the Path-Manager tries not to create too many subflows using the
+encoded [endpoints](#endpoints), and following the imposed [limits](#limits).
+
+{: .note}
+Technically, the Path-Manager can only attach new subflows, and announce
+addresses on MPTCP connections that are considered as *fully established*:
+typically when the first data has been sent.
+
+#### Announcing new addresses
+
+All endpoints flagged as [`signal`](#endpoints) will be announced via an
+`ADD_ADDR` notification.
+
+This will be done, one at a time: once the MPTCP connection is *fully
+established*, and each time a new subflow is established. This behaviour might
+change in the future, if someone implements the ticket
+[#334](https://github.com/multipath-tcp/mptcp_net-next/issues/334).
+
+#### Creating new subflows
+
+There are two cases that involve the creation of new subflows, if allowed by
+the `subflows` [limit](#limits):
+
+- Endpoints flagged as [`subflow`](#endpoints) will be used to create new
+  subflows, one at a time, to the address of the server used in the initial
+  subflow. Each endpoint should only be used once, except if the
+  endpoint has the [`fullmesh`](#endpoints) flag.
+
+- Upon the reception of an [`ADD_ADDR`](#announcing-new-addresses), and if the
+  `add_addr_accepted` [limits](#limits) has not been reached yet, a new subflow
+  will be created using the local address the routing configuration will pick,
+  except if there are endpoints with the [`fullmesh`](#endpoints) flag. In this
+  case, each endpoints with the [`fullmesh`](#endpoints) flag will be used to
+  create a new subflow to the announced address.
+
+Note that when subflows are closed before the end of a connection -- e.g. due to
+an error on the network, or if the other peer closed subflows -- the
+Path-Manager will not try to re-establish them. This behaviour might change in
+the future, if someone implements the ticket
+[#440](https://github.com/multipath-tcp/mptcp_net-next/issues/440).
+
+#### Accepting new subflows
+
+If the request is valid, the peer will accept the creation of new subflows, as
+long as the `subflows` [limit](#limits) has not been reached yet.
+
 
 ## Userspace Path-Manager
 
