@@ -106,10 +106,11 @@ To be able to use multiple IP addresses on a host to create multiple *subflows*
 
 {: .info}
 > A server having only one network interface does not need to configure anything
-> else: the client will create additional subflows as needed.
+> else: the client will be able to attach additional subflows as needed -- max 2
+> by default, see the [Limits](#limits) section below.
 >
 > It might be interesting to announce additional IPv4/6 addresses. Some clients
-> might be connected to networks having only an IPv4 or an IPv6 address. Also
+> might be connected to networks having only an IPv4 or an IPv6 address. Also,
 > consider that IPv4 and IPv6 packets are often routed differently through some
 > networks, resulting in different latencies.
 
