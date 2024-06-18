@@ -115,3 +115,8 @@ different rules can be applied for each connection. The path-manager will then
 need to be controlled by a userspace daemon, i.e.
 [`mptcpd`](https://mptcpd.mptcp.dev). In this case, the configuration has to be
 done on the userspace daemon side.
+
+{: .note}
+`mptcpd` can help to create custom userspace Path-Managers: please check this
+[Plugins](https://github.com/multipath-tcp/mptcpd/wiki/Plugins) page for more
+details about that.
