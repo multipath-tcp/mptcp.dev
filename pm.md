@@ -69,7 +69,7 @@ Optionally, the following flags can be set:
 - `fullmesh`: The MPTCP path manager will try to create an additional subflow
   for each known peer address, using this endpoint as the source IP address.
 
-The IP address is an IPv4 or IPv6 address.
+The IP address is an IPv4 or IPv6 address. The endpoints are netns-aware.
 
 #### Example
 
@@ -98,6 +98,8 @@ ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
 - `add_addr_accepted` is the limit of accepted `ADD_ADDR` -- IP address
   notification from the other peer -- that will result in the creation of
   subflows, typically only for the client side (default is 0).
+
+The limits are per MPTCP connection, and netns-aware.
 
 {: .note}
 It is possible to reach the limits with fewer established subflows than
