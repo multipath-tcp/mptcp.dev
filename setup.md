@@ -107,7 +107,7 @@ To be able to use multiple IP addresses on a host to create multiple *subflows*
 {: .info}
 > A server having only one network interface does not need to configure anything
 > else: the client will be able to attach additional subflows as needed -- max 2
-> by default, see the [Limits](#limits) section below.
+> by default, see the Path-Manager's [Limits](pm.html#limits) section below.
 >
 > It might be interesting to announce additional IPv4/6 addresses. Some clients
 > might be connected to networks having only an IPv4 or an IPv6 address. Also,
@@ -117,87 +117,14 @@ To be able to use multiple IP addresses on a host to create multiple *subflows*
 ### Path-Manager configuration
 
 With the default in-kernel MPTCP path-manager, additional IP addresses need to
-be specified.
-
-This configuration can be automated with tools like
-[Network Manager](https://networkmanager.dev) -- in command lines, look for
-`mptcp-flags` in the [settings](https://networkmanager.dev/docs/api/latest/nm-settings-nmcli.html) --
-and [mptcpd](https://mptcpd.mptcp.dev). Here, the focus is on manual
-configuration, using the [`ip mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html)
-command.
-
-{: .note}
-With the userspace MPTCP path-manager -- `sysctl net.mptcp.pm_type=1` -- the
-configuration has to be done on the userspace daemon side.
-
-#### Endpoints
-
-MPTCP endpoints can be configured with
-
-```sh
-ip mptcp endpoint add <IP address> dev <interface> [ signal | subflow ] [ backup ] [ fullmesh ]
-```
-
-{: .warning}
-It is important to specify the network interface linked to the address by adding
-`dev <interface>`. If not, the routing will probably not be done properly, and
-will require manual configuration, see below:
-[Manual Routing Configuration](#manual-routing-configuration).
-
-One of the following flags needs to be set:
-- `signal`: The endpoint will be announced to each peer via an MPTCP `ADD_ADDR`
-  sub-option. Typically, a server would be responsible for this.
-- `subflow`: The endpoint will be used to create an additional subflow using
-  the given source IP address. A client would typically do this.
-
-Optionally, the following flags can be set:
-- `backup`: Subflows created from this endpoint instruct the peers to only send
-  data on it when all non-backup subflows are unavailable.
-- `fullmesh`: The MPTCP path manager will try to create an additional subflow
-  for each known peer address, using this endpoint as the source IP address.
-
-The IP address is an IPv4 or IPv6 address.
-
-#### Example
-
-- Servers can announce extra IP addresses:
-```sh
-ip mptcp endpoint add 10.2.2.2 dev eth0 signal
-```
-
-- Clients can create additional subflows from a cellular interface, and flag
-  this subflow as "backup", to be used to carry data only if the main path is
-  unavailable:
-```sh
-ip mptcp endpoint add 100.64.1.134 dev usb0 subflow backup
-```
-
-#### Limits
-
-It is also important to make sure the limits are high enough:
-
-```sh
-ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
-```
-
-- `subflows` is the limit of additional created and accepted subflows (paths),
-  for both the client and server sides (default is 2).
-- `add_addr_accepted` is the limit of accepted `ADD_ADDR` -- IP address
-  notification from the other peer -- that will result in the creation of
-  subflows, typically only for the client side (default is 0).
-
-{: .note}
-It is possible to reach the limits with fewer established subflows than
-expected, e.g. when new subflow requests cannot reach the other peer. In case of
-problem, please increase the limits, use `ss -Mai` to check the counters, and
-modify the routing or firewall rules to avoid using certain paths between
-specific IP addresses. For example, in a lab setup with dedicated links use
-specific routes rather than letting the kernel select the default route.
+be specified, and limits might need to be changed. Check the
+[Path-Manager](pm.html) page for more details about this component.
 
 ### Manual routing configuration
 
 <details markdown="block">
-<summary>Only if MPTCP endpoints have <b>not</b> been configured with a network interface </summary>
+<summary>Only if MPTCP endpoints have <b>not</b> been configured with a network
+interface </summary>
 
 The system needs to know how to route packets from a specific IP address to the
 correct network interface.

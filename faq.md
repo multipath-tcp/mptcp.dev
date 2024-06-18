@@ -1,7 +1,7 @@
 ---
 layout: home
 title: FAQ
-nav_order: 6
+nav_order: 7
 nav_titles: true
 titles_max_depth: 2
 ---

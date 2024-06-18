@@ -78,10 +78,10 @@ the packet scheduler.
 
 ### Path Manager
 
-The Path Manager is in charge of *subflows*, from creation to deletion, and also
-address announcements. Typically, it is the client side that initiates subflows,
-and the server side that announces additional addresses via the `ADD_ADDR` and
-`REMOVE_ADDR` options.
+The [Path Manager](pm.html) is in charge of *subflows*, from creation to
+deletion, and also address announcements. Typically, it is the client side that
+initiates subflows, and the server side that announces additional addresses via
+the `ADD_ADDR` and `REMOVE_ADDR` options.
 
 ```mermaid
 graph LR;

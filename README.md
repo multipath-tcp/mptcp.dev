@@ -9,6 +9,7 @@ website for those who want to contribute.
   MPTCP related content.
 - `setup` is meant as a guide for end users, helping them setup and use MPTCP on
   their system.
+- `pm` is dedicated to the different path-managers.
 - `debugging` is meant as a source of solutions on how and what to use to debug
   MPTCP on a system.
 - `implementation` contains information on how to support MPTCP natively in an

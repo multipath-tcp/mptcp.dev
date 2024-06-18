@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Contributing
-nav_order: 9
+nav_order: 10
 nav_titles: true
 titles_max_depth: 2
 ---
