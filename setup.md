@@ -126,7 +126,7 @@ configuration, using the [`ip mptcp`](https://man7.org/linux/man-pages/man8/ip-m
 command.
 
 {: .note}
-With the userspace MPTCP path-manager -- `sysctl net.mptcp.pm_type=0` -- the
+With the userspace MPTCP path-manager -- `sysctl net.mptcp.pm_type=1` -- the
 configuration has to be done on the userspace daemon side.
 
 #### Endpoints
