@@ -63,11 +63,12 @@ One of the following flags needs to be set:
 - `subflow`: The endpoint will be used to create an additional subflow using
   the given source IP address. A client would typically do this.
 
-Optionally, the following flags can be set:
+Optionally, the following flags can be added next to one of the previous ones:
 - `backup`: Subflows created from this endpoint instruct the peers to only send
   data on it when all non-backup subflows are unavailable.
 - `fullmesh`: The MPTCP path manager will try to create an additional subflow
-  for each known peer address, using this endpoint as the source IP address.
+  for each known peer address, using this endpoint as the source IP address. It
+  requires the `subflow` flag, and it is not compatible with the `signal` one.
 
 The IP address is an IPv4 or IPv6 address. The endpoints are netns-aware.
 
