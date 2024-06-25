@@ -9,12 +9,12 @@ titles_max_depth: 2
 ## Many ways to contributes
 
 There are many ways to contribute to MPTCP in general:
-- Reporting bugs
-- Testing the development version
+- [Reporting bugs](https://github.com/multipath-tcp/mptcp_net-next/issues)
+- [Testing the development version](https://github.com/multipath-tcp/mptcp-upstream-virtme-docker)
 - Talking about it on social media, mailing lists, conferences, etc.
 - Sending supportive messages to other contributors
-- Helping new users on different platforms: mailing lists, IRC, external
-  services
+- Helping new users on different platforms: [mailing lists, IRC, external
+  services](/#communication)
 - Asking to enable it by default on services (servers) and devices
 - Adding [native MPTCP support in apps](apps.html) (or asking app developers to
   add native MPTCP support)
