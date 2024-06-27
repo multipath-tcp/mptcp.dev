@@ -19,7 +19,7 @@ graph LR;
     C_1 -. "Potential subflow" -.- S_1
     C_1 <== "Initial subflow" ==> S_1
     C_1 ~~~|"Subflows creation"| C_1
-    S_1 ~~~|"Addresses announcement"| S_1
+    S_1 ~~~|"Address announcement"| S_1
 
     linkStyle 0 stroke:orange;
     linkStyle 1 stroke:green;
