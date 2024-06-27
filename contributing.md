@@ -6,7 +6,7 @@ nav_titles: true
 titles_max_depth: 2
 ---
 
-## Many ways to contributes
+## Many ways to contribute
 
 There are many ways to contribute to MPTCP in general:
 - [Reporting bugs](https://github.com/multipath-tcp/mptcp_net-next/issues)
