@@ -49,6 +49,11 @@ aux_links:
 # Makes Aux links open in a new tab. Default is false
 aux_links_new_tab: true
 
+# External navigation links
+nav_external_links:
+  - title: MPTCP sysctl
+    url: https://docs.kernel.org/networking/mptcp-sysctl.html
+
 callouts:
   warning:
     title: Warning
