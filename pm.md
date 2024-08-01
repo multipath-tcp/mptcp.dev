@@ -40,8 +40,8 @@ This configuration can be automated with tools like
 [Network Manager](https://networkmanager.dev) -- in command lines, look for
 `mptcp-flags` in the [settings](https://networkmanager.dev/docs/api/latest/nm-settings-nmcli.html) --
 and [mptcpd](https://mptcpd.mptcp.dev). Here, the focus is on the manual
-configuration, using the [`ip mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html)
-command.
+configuration, using the `ip mptcp` command. Please check the manual for more
+details: [`man ip-mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html).
 
 #### Endpoints
 
