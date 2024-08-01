@@ -70,6 +70,12 @@ Optionally, the following flags can be added next to one of the previous ones:
   for each known peer address, using this endpoint as the source IP address. It
   requires the `subflow` flag, and it is not compatible with the `signal` one.
 
+It is also possible to specify a `port` number with the `signal` endpoints: this
+will advertise an IP address and a port number, and accept new subflows on this
+additional address and port. This was also called the `ndiffports` technique.
+When used with the [`allow_join_initial_addr_port`](https://docs.kernel.org/networking/mptcp-sysctl.html)
+sysctl set to 0, this can be useful for servers deployed behind a load balancer.
+
 The IP address is an IPv4 or IPv6 address. The endpoints are netns-aware.
 
 #### Example
