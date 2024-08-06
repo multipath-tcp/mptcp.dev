@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Implementation guide for Linux (Devs)
+title: Implementation guide (Devs)
 nav_order: 5
 nav_titles: true
 titles_max_depth: 2
