@@ -40,7 +40,9 @@ To create an MPTCP connection, simply request it when creating the
    for `NSURLSession`, e.g. for the _Handover_ type, pass  `.handover` 
    (`URLSession`) or `NSURLSessionMultipathServiceTypeHandover` (`NSURLSession`)
 
-4. Create the `(NS)URLSession` by passing in the configuration to the constructor. From now on, every request done with this session should use MPTCP, if the server supports it.
+4. Create the `(NS)URLSession` by passing in the configuration to the 
+   constructor. From now on, every request done with this session should use 
+   MPTCP, if the server supports it.
    
 {: .warning }
 > To be able to enable the _Aggregate_ service type, it is required to add the 
