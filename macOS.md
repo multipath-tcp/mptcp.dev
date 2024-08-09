@@ -1,68 +1,19 @@
 ---
 layout: home
-title: Implementation guide (macOS/iOS)
+title: Implementation guide (macOS)
 nav_order: 6
 nav_titles: true
 titles_max_depth: 2
 ---
 
 This guide is for **application developers** working to add native MPTCP support
-when running on macOS/iOS. Be careful that some code presented on this page is
-only supported on iOS.
+when running on macOS. Be careful that some code presented on this page is
+only supported on iOS: MPTCP **cannot** be used with `URLSesssion` on OSX.
 
 {: .warning }
-Note however that only client side MPTCP seems supported for the time being 
-on macOS/iOS.
+Currently, on macOS, MPTCP is only supported for the client side.
 
-## MPTCP with the Network framework
-
-The [`Network` framework](https://developer.apple.com/documentation/network) 
-allows to create new MPTCP connections on macOS/iOS by setting the 
-`multipathServiceType` property of a `NWParameters` object that will be used to
-create the connection. 
-
-## Examples using the Network framework
-
-Below are two examples showing how to create a MPTCP socket using the `Network` 
-framework. More comprehensive examples showing how to perform an HTTP GET 
-request to `check.mptcp.dev` can be found on this [Git repository](https://github.com/mptcp-apps/mptcp-hello/)
-.
-
-<details markdown="block">
-<summary>Example in Swift </summary>
-
-`multipathServiceType` support has been added
-in [iOS 12.0/macOS 10.14](https://developer.apple.com/documentation/network/nwparameters/2998700-multipathservicetype)
-
-```swift
-// request to create a new TCP connection
-// note that we can also choose .tls to create a TLS session above (MP)TCP
-let params: NWParameters = .tcp 
-// Handover mode: Other types can be selected
-params.multipathServiceType = .handover
-
-let connection = NWConnection(to: server, using: params)
-```
-</details> {: .ctsm}
-
-<details markdown="block">
-<summary>Example in C </summary>
-
-`multipathServiceType` support has been added
-in [iOS 12.0/macOS 10.14](https://developer.apple.com/documentation/network/nwparameters/2998700-multipathservicetype)
-
-```c
-// request to create a new TCP connection with TLS enabled
-nw_parameters_t params = nw_parameters_create_secure_tcp(
-      NW_PARAMETERS_DEFAULT_CONFIGURATION, NW_PARAMETERS_DEFAULT_CONFIGURATION);
-// Handover mode: Other types can be selected
-nw_parameters_set_multipath_service(params, nw_multipath_service_handover);
-
-nw_connection_t connection = nw_connection_create(endpoint, params);
-```
-</details> {: .ctsm}
-
-## MPTCP with (NS)URLSession (iOS only)
+## MPTCP with URLSession (iOS only)
 
 iOS offers the possibility to establish new MPTCP connections by using its 
 `URLSession` API -- prefixed with `NS` with Objective-C. The path manager's 
@@ -158,5 +109,53 @@ NSURLSessionConfiguration *conf = [NSURLSessionConfiguration defaultSessionConfi
 conf.multipathServiceType = NSURLSessionMultipathServiceTypeHandover;
 
 NSURLSession *session = [NSURLSession sessionWithConfiguration:conf];
+```
+</details> {: .ctsm}
+
+## MPTCP with the Network framework
+
+The [`Network` framework](https://developer.apple.com/documentation/network) 
+allows to create new MPTCP connections on macOS by setting the 
+`multipathServiceType` property of a `NWParameters` object that will be used to
+create the connection. 
+
+## Examples using the Network framework
+
+Below are two examples showing how to create an MPTCP socket using the `Network` 
+framework. More comprehensive examples showing how to perform an HTTP GET 
+request to `check.mptcp.dev` can be found on this
+[Git repository](https://github.com/mptcp-apps/mptcp-hello/).
+
+<details markdown="block">
+<summary>Example in Swift </summary>
+
+`multipathServiceType` support has been added
+in [iOS 12.0/macOS 10.14](https://developer.apple.com/documentation/network/nwparameters/2998700-multipathservicetype)
+
+```swift
+// request to create a new TCP connection
+// note that we can also choose .tls to create a TLS session above (MP)TCP
+let params: NWParameters = .tcp 
+// Handover mode: Other types can be selected
+params.multipathServiceType = .handover
+
+let connection = NWConnection(to: server, using: params)
+```
+</details> {: .ctsm}
+
+<details markdown="block">
+<summary>Example in C </summary>
+
+`multipathServiceType` support has been added
+in [iOS 12.0/macOS 10.14](https://developer.apple.com/documentation/network/nwparameters/2998700-multipathservicetype)
+
+```c
+// request to create a new TCP connection with TLS enabled
+nw_parameters_t params = nw_parameters_create_secure_tcp(
+      NW_PARAMETERS_DEFAULT_CONFIGURATION, NW_PARAMETERS_DEFAULT_CONFIGURATION);
+// Handover mode: Other types can be selected
+nw_parameters_set_multipath_service(params, nw_multipath_service_handover);
+
+nw_connection_t connection = nw_connection_create(endpoint, params);
 ```
 </details> {: .ctsm}
