@@ -14,7 +14,7 @@ website for those who want to contribute.
   MPTCP on a system.
 - `implementation` contains information on how to support MPTCP natively in an
   app on Linux.
-- `ios` contains information on how to support MPTCP natively in an app on iOS.
+- `macos` contains information on how to support MPTCP natively in an app on macOS.
 - `mptcp-info` contains info on how app devs can retrieve MPTCP info.
 - `faq`, for Frequently Asked Questions.
 - `apps`, the list of currently apps supporting MPTCP natively.
