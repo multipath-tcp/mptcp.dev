@@ -1,7 +1,7 @@
 ---
 layout: home
 title: FAQ
-nav_order: 7
+nav_order: 8
 nav_titles: true
 titles_max_depth: 2
 ---
@@ -83,9 +83,7 @@ The use of MPTCP on macOS differs from Linux:
   only.
 - It is most straightforward when applications use the system's
   [frameworks](https://developer.apple.com/documentation/foundation/nsurlsessionconfiguration/improving_network_reliability_using_multipath_tcp),
-  which can be done in
-  [C language](https://developer.apple.com/documentation/network) as well, see
-  this [example with OpenSSH](https://github.com/apple-oss-distributions/OpenSSH/blob/9b6202341ee10b42e7391229ad5c0f2eb8aea8af/openssh/sshconnect.c#L487-L489).
+  as explained on the [macOS](/macOS.html) page.
 - There is some documentation for the
   [connectx](https://opensource.apple.com/source/xnu/xnu-7195.81.3/bsd/man/man2/connectx.2.auto.html)
   system call that mentions multipath support if the socket has been created with
