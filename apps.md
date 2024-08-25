@@ -22,6 +22,7 @@ mentioned. Please note that other apps can be forced to use it by following
 | [Shadowsocks libev](https://github.com/shadowsocks/shadowsocks-libev) | [v3.3.6](https://github.com/shadowsocks/shadowsocks-libev/pull/2902) | [`--mptcp`](https://github.com/shadowsocks/shadowsocks-libev) |
 | [Shadowsocks Rust](https://github.com/shadowsocks/shadowsocks-rust) | [v1.16.0](https://github.com/shadowsocks/shadowsocks-rust/pull/1157) | [`--mptcp`](https://github.com/shadowsocks/shadowsocks-rust) |
 | [SystemD](https://systemd.io/) | [v257](https://github.com/systemd/systemd/pull/32958) | [`SocketProtocol=mptcp`](https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html) (`[Socket]` section) |
+| [v2ray-core](https://github.com/v2fly/v2ray-core) | [v5.17.0](https://github.com/v2fly/v2ray-core/pull/3109) | [`"mptcp": true`](https://www.v2fly.org/en_US/config/transport.html#sockoptobject) |
 
 ## Tools
 
