@@ -40,6 +40,12 @@ mentioned. Please note that other apps can be forced to use it by following
 | SSH | [OpenSSH-281.40.2](https://github.com/apple-oss-distributions/OpenSSH) | `applemultipath` option |
 | [Shellfish](https://secureshellfish.app) | ? | Settings / Advanced / 🌍 Multipath TCP |
 
+## iOS apps
+
+| Name | Version |
+| --- | --- |
+| [VLC](https://www.videolan.org/vlc/) | [v4.0](https://code.videolan.org/videolan/vlc-ios/-/commit/210c88b3e4e0dac0e4f2d18b3e3dfbe664693658) |
+
 ## Misc.
 
 | Name | Version |
