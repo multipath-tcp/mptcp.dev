@@ -44,10 +44,10 @@ mentioned. Please note that other apps can be forced to use it by following
 
 | Name | Version | How to use |
 | --- | --- | --- |
-| [VLC](https://www.videolan.org/vlc/) | [v4.0](https://code.videolan.org/videolan/vlc-ios/-/commit/210c88b3e4e0dac0e4f2d18b3e3dfbe664693658) | Enabled by default |
-| [Siri](https://www.apple.com/fr/siri/) | [>= iOS 7](https://www.tessares.net/apples-mptcp-story-so-far/) | Enabled by default |
 | [Apple Maps](https://www.apple.com/maps/) | [>= iOS 13](https://www.tessares.net/apple-pushes-multipath-tcp-further/) | Enabled by default |
 | [Apple Music](https://www.apple.com/music/) | [>= iOS 13](https://www.tessares.net/apple-pushes-multipath-tcp-further/) | Enabled by default |
+| [Siri](https://www.apple.com/fr/siri/) | [>= iOS 7](https://www.tessares.net/apples-mptcp-story-so-far/) | Enabled by default |
+| [VLC](https://www.videolan.org/vlc/) | [v4.0](https://code.videolan.org/videolan/vlc-ios/-/commit/210c88b3e4e0dac0e4f2d18b3e3dfbe664693658) | Enabled by default |
 
 ## Misc.
 
