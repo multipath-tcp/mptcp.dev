@@ -14,6 +14,7 @@ mentioned. Please note that other apps can be forced to use it by following
 
 | Name | Version | How to use |
 | --- | --- | --- |
+| [Apache HTTP Server](https://httpd.apache.org) | [2.5.1](https://svn.apache.org/viewvc?view=revision&revision=1920586) | [`Listen 80 options=multipathtcp`](https://github.com/apache/httpd/pull/476/commits/0d56d533f4af) or [`ProxyPass multipathtcp=On`](https://github.com/apache/httpd/pull/476/commits/dfa6aec0dc74) |
 | [Apache Traffic Server](https://trafficserver.apache.org/) | [9.2.4](https://github.com/apache/trafficserver/pull/10701) | [`server_ports: <port> mptcp`](https://docs.trafficserver.apache.org/en/latest/admin-guide/files/records.yaml.en.html) |
 | [cURL](https://curl.se/) | [8.9.0](https://github.com/curl/curl/pull/13278) | [`--mptcp`](https://curl.se/docs/manpage.html) |
 | [Envoy](https://www.envoyproxy.io/) | [1.21.0](https://github.com/envoyproxy/envoy/pull/18780) | [`"enable_mptcp": "true"`](https://www.envoyproxy.io/docs/envoy/v1.21.6/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-enable-mptcp) (`listening` config) |
