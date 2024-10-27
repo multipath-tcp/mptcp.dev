@@ -58,6 +58,7 @@ mentioned. Please note that other apps can be forced to use it by following
 | Name | Version |
 | --- | --- |
 | [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 |
+| [OpenWRT](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) |
 
 ## Add native MPTCP support
 
