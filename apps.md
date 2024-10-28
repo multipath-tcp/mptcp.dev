@@ -36,7 +36,9 @@ mentioned. Please note that other apps can be forced to use it by following
 | [TCPDump](https://www.tcpdump.org/) | [4.5.0](https://github.com/the-tcpdump-group/tcpdump/commit/578dd316f3) | Can decode MPTCP options in TCP packets |
 | [Wireshark](https://www.wireshark.org/) | [4.2.4](https://github.com/wireshark/wireshark/commit/3bc42dbf8e) | Can decode and filter MPTCP options |
 
-## MacOS apps
+## macOS apps
+
+MPTCP is also available on [macOS](macOS.html) (client side only).
 
 | Name | Version | How to use |
 | --- | --- | --- |
@@ -45,6 +47,8 @@ mentioned. Please note that other apps can be forced to use it by following
 | [Shellfish](https://secureshellfish.app) | ? | Settings / Advanced / 🌍 Multipath TCP |
 
 ## iOS apps
+
+MPTCP is also available on [iOS](macOS.html) (client side only).
 
 | Name | Version | How to use |
 | --- | --- | --- |
