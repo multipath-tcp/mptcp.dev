@@ -1,6 +1,6 @@
 ---
 layout: home
-title: Apps supporting MPTCP
+title: Support in Apps and Operating Systems
 nav_order: 9
 nav_titles: true
 titles_max_depth: 2
@@ -29,6 +29,34 @@ mentioned. Please note that other apps can be forced to use it by following
 
 Do not hesitate to add native MPTCP support in more apps! For some ideas, feel
 free to look at this [spreadsheet](https://docs.google.com/spreadsheets/d/1F2-v4Dhdn0rMyJZ3m5chyNiwg7oj0rpSR11GEykatJw/edit#gid=0).
+
+## Linux distributions
+
+Here is a list of Linux distributions where MPTCP is supported by the default
+kernel since a certain version, with or without `mptcpd` (including `mptcpize`)
+package available in the official repositories:
+
+| Name | Version | `mptcpd` | Comments |
+| --- | --- | :---: | --- |
+| [ArchLinux](https://archlinux.org) | ✅ | ❌ | Rolling release: MPTCP support is enabled since kernel v5.6. |
+| [Alpine Linux](https://alpinelinux.org) | 3.20 | ❌ | MPTCP was available before in 'linux-edge'. |
+| [Debian](https://www.debian.org) | 12 | ✅ | |
+| [Fedora](https://fedoraproject.org) | 36 | ✅ | |
+| [Gentoo](https://www.gentoo.org) | ✅ | ✅ | Version: to be completed. |
+| [Home Assistant OS](https://www.home-assistant.io) | 12.2 | ❌ | |
+| [NixOS](https://nixos.org) | ✅ | ❌ | Version: to be completed. `mptcpd` was packaged in an unofficial [flake](https://github.com/teto/mptcp-flake) |
+| [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 | ✅ | MPTCP-specific, where everything is automatically configured. |
+| [OpenWrt](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) | ✅ | |
+| [Raspberry Pi OS](https://www.raspberrypi.com/software/) | 20231004 | ✅ | |
+| [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | 9 | ✅ | MPTCP is available as a tech-preview since v8.3. |
+| [SUSE](https://www.suse.com) | ✅ | ❌ | Version: to be completed. |
+| [Ubuntu](https://ubuntu.com) | 22.04 | ✅ | |
+| [Void](https://voidlinux.org) | ✅ | ❌ | Rolling release: MPTCP support is enabled since kernel v5.10. |
+
+Forks based on these distributions are not listed here. It is very likely that
+if the upstream distribution supports it, the fork does it too.
+
+Do not hesitate to contribute to the packaging, and to update this table!
 
 ## Tools
 
@@ -59,13 +87,6 @@ MPTCP is also available on [iOS](macOS.html) (client side only).
 | [Apple Music](https://www.apple.com/music/) | [>= iOS 13](https://www.tessares.net/apple-pushes-multipath-tcp-further/) | Enabled by default |
 | [Siri](https://www.apple.com/fr/siri/) | [>= iOS 7](https://www.tessares.net/apples-mptcp-story-so-far/) | Enabled by default |
 | [VLC](https://www.videolan.org/vlc/) | [v4.0](https://code.videolan.org/videolan/vlc-ios/-/commit/210c88b3e4e0dac0e4f2d18b3e3dfbe664693658) | Enabled by default |
-
-## Misc.
-
-| Name | Version |
-| --- | --- |
-| [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 |
-| [OpenWrt](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) |
 
 ## Others?
 
