@@ -6,11 +6,11 @@ nav_titles: true
 titles_max_depth: 2
 ---
 
+## Linux apps
+
 Applications listed below support MPTCP natively since the version that is
 mentioned. Please note that other apps can be forced to use it by following
 [these instructions](setup.html#force-applications-to-use-mptcp).
-
-## Linux apps
 
 | Name | Version | How to use |
 | --- | --- | --- |
@@ -26,6 +26,9 @@ mentioned. Please note that other apps can be forced to use it by following
 | [Shadowsocks Rust](https://github.com/shadowsocks/shadowsocks-rust) | [v1.16.0](https://github.com/shadowsocks/shadowsocks-rust/pull/1157) | [`--mptcp`](https://github.com/shadowsocks/shadowsocks-rust) |
 | [SystemD](https://systemd.io/) | [v257](https://github.com/systemd/systemd/pull/32958) | [`SocketProtocol=mptcp`](https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html) (`[Socket]` section) |
 | [v2ray-core](https://github.com/v2fly/v2ray-core) | [v5.17.0](https://github.com/v2fly/v2ray-core/pull/3109) | [`"mptcp": true`](https://www.v2fly.org/en_US/config/transport.html#sockoptobject) |
+
+Do not hesitate to add native MPTCP support in more apps! For some ideas, feel
+free to look at this [spreadsheet](https://docs.google.com/spreadsheets/d/1F2-v4Dhdn0rMyJZ3m5chyNiwg7oj0rpSR11GEykatJw/edit#gid=0).
 
 ## Tools
 
@@ -63,11 +66,6 @@ MPTCP is also available on [iOS](macOS.html) (client side only).
 | --- | --- |
 | [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 |
 | [OpenWrt](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) |
-
-## Add native MPTCP support
-
-Do not hesitate to add native MPTCP support in more apps! For some ideas, feel
-free to look at this [spreadsheet](https://docs.google.com/spreadsheets/d/1F2-v4Dhdn0rMyJZ3m5chyNiwg7oj0rpSR11GEykatJw/edit#gid=0).
 
 ## Others?
 
