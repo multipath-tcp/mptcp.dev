@@ -270,8 +270,19 @@ therefore recommended to use these last two fields.
 
 ## Check for TCP fallback
 
-Since kernel v5.16, `getsockopt(SOL_MPTCP, MPTCP_INFO)` can be used to check if
-an MPTCP connection fell back to TCP. If this `getsockopt()` call returns `-1`,
+The clearest and easiest way for an application to check if a connection is
+still using MPTCP, is to call `getsockopt(SOL_TCP, TCP_IS_MPTCP)`: `SOL_TCP` is
+`6`, like `IPPROTO_TCP`, and `TCP_IS_MPTCP` is `43`. If there is no error, the
+value filled in the buffer will be either `1` for MPTCP, and `0` for TCP. If the
+socket option is not supported, one of these two `errno`s will be set:
+- `EOPNOTSUPP` (95: Operation not supported) for MPTCP sockets
+- `ENOPROTOOPT` (92: Protocol not available) for TCP sockets, e.g. on the socket
+  received after an `accept()`, when the client didn't request to use MPTCP:
+  this socket will be a TCP one, even if the listen socket was an MPTCP one.
+
+If `TCP_IS_MPTCP` is not supported, and the kernel is v5.16 or newer,
+`getsockopt(SOL_MPTCP, MPTCP_INFO)` can be used as a workaround to check if an
+MPTCP connection fell back to TCP. If this `getsockopt()` call returns `-1`,
 and `errno` is set to `EOPNOTSUPP` (v4) or `ENOPROTOOPT` (v6), it either means:
 - the MPTCP connection has fallen back to TCP at some point
 - or the kernel is older than v5.16.
@@ -295,16 +306,29 @@ that would have happened after the establishment of the connection (should be
 rare).
 
 ```c
+#define TCP_IS_MPTCP 43
 #define SOL_MPTCP 284
 #define MPTCP_INFO 1
 bool socket_is_mptcp(int fd)
 {
-    socklen_t len = 0;
+    int val;
+    socklen_t len = sizeof(val);
+
+    /* Supported on Kernel >= 6.10 */
+    if (getsockopt(fd, SOL_TCP, TCP_IS_MPTCP, &val, &len) == 0)
+        return !!val;
+
+    /* TCP_IS_MPTCP is not supported: check protocol via errno, or MPTCP_INFO */
+    if (errno != EOPNOTSUPP)
+        return false; /* not an MPTCP socket, e.g. on the server side when the client didn't request to use MPTCP */
+
+    /* Here: fd is an MPTCP socket, but a fallback might have happened during the connection */
 
     /* On kernel < 5.16, MPTCP_INFO will always fail with errno set to EOPNOTSUPP (v4) or ENOPROTOOPT (v6) */
     if (kernel_version_lower(5, 16))
-        return true; /* This method cannot be used: check the next example */
+        return true; /* The best we can say on this kernel */
 
+    len = 0;
     if (getsockopt(fd, SOL_MPTCP, MPTCP_INFO, NULL, &len) < 0) {
         if (errno != EOPNOTSUPP && errno != ENOPROTOOPT)
             perror("getsockopt(MPTCP_INFO)"); /* Should not happen */
