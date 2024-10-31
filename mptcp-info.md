@@ -10,11 +10,11 @@ This section is for **application developers** trying to access MPTCP
 specific info from their app on Linux. End-users can retrieve info via other
 interfaces, see the [Debugging](debugging.html) section.
 
-Like TCP, it is possible to retrieve MPTCP info from the socket, via
+Like TCP, it is possible to retrieve MPTCP-specific info from the socket, via
 [`getsockopt()`](https://www.man7.org/linux/man-pages/man2/getsockopt.2.html),
-using `MPTCP_INFO` (`1`). It is also possible to retrieve info from the subflows
-via `MPTCP_TCPINFO` (`2`), `MPTCP_SUBFLOW_ADDRS` (`3`), and `MPTCP_FULL_INFO`
-(`4`).
+using the `SOL_MPTCP` (`284`) level and the `MPTCP_INFO` (`1`) option name. It
+is also possible to retrieve info from the subflows via `MPTCP_TCPINFO` (`2`),
+`MPTCP_SUBFLOW_ADDRS` (`3`), and `MPTCP_FULL_INFO` (`4`).
 
 ## MPTCP socket level
 
@@ -22,9 +22,9 @@ via `MPTCP_TCPINFO` (`2`), `MPTCP_SUBFLOW_ADDRS` (`3`), and `MPTCP_FULL_INFO`
 these stats are also exposed via the Netlink Diag interface, and can be seen
 with `ss -Mi` for example.
 
-To retrieve info, `getsockopt(MPTCP_INFO)` can be used: the kernel will fill a
-given buffer of a given size with items following the `mptcp_info` structure,
-and update the size with the number of bytes that were written:
+To retrieve info, `getsockopt(SOL_MPTCP, MPTCP_INFO)` can be used: the kernel
+will fill a given buffer of a given size with items following the `mptcp_info`
+structure, and update the size with the number of bytes that were written:
 
 <div class="language-c highlighter-rouge">
   <div class="highlight">
@@ -270,21 +270,21 @@ therefore recommended to use these last two fields.
 
 ## Check for TCP fallback
 
-Since kernel v5.16, `getsockopt(MPTCP_INFO)` can be used to check if an
-MPTCP connection fell back to TCP. If this `getsockopt()` call returns `-1`,
+Since kernel v5.16, `getsockopt(SOL_MPTCP, MPTCP_INFO)` can be used to check if
+an MPTCP connection fell back to TCP. If this `getsockopt()` call returns `-1`,
 and `errno` is set to `EOPNOTSUPP` (v4) or `ENOPROTOOPT` (v6), it either means:
 - the MPTCP connection has fallen back to TCP at some point
 - or the kernel is older than v5.16.
 
 {: .warning}
-On kernels < v5.16, `getsockopt(MPTCP_INFO)` will always fail, and `errno` will
-also be set to `EOPNOTSUPP` (v4) or `ENOPROTOOPT` (v6). Do not use this method
-on older kernels.
+On kernels < v5.16, `getsockopt(SOL_MPTCP, MPTCP_INFO)` will always fail, and
+`errno` will also be set to `EOPNOTSUPP` (v4) or `ENOPROTOOPT` (v6). Do not use
+this method on older kernels.
 
 On the server side, it is possible to look at the protocol of the `accept`ed
-sockets with `getsockopt(SO_PROTOCOL)`: if the client requested to use MPTCP,
-the protocol will be set to `IPPROTO_MPTCP`. This can be used on kernels < 5.16
-too.
+sockets with `getsockopt(SOL_SOCKET, SO_PROTOCOL)`: if the client requested to
+use MPTCP, the protocol will be set to `IPPROTO_MPTCP`. This can be used on
+kernels < 5.16 too.
 
 <details markdown="block">
 <summary>Example in C (client or server) </summary>
