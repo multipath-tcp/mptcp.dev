@@ -295,16 +295,17 @@ that would have happened after the establishment of the connection (should be
 rare).
 
 ```c
+#define SOL_MPTCP 284
 #define MPTCP_INFO 1
-bool socket_is_mptcp(int accept_fd)
+bool socket_is_mptcp(int fd)
 {
-    socklen_t len = 0:
+    socklen_t len = 0;
 
-    /* kernel < 5.16 will always fail with errno set to EOPNOTSUPP (v4) or ENOPROTOOPT (v6) */
+    /* On kernel < 5.16, MPTCP_INFO will always fail with errno set to EOPNOTSUPP (v4) or ENOPROTOOPT (v6) */
     if (kernel_version_lower(5, 16))
         return true; /* This method cannot be used: check the next example */
 
-    if (getsockopt(accept_fd, SOL_MPTCP, MPTCP_INFO, NULL, &len) < 0) {
+    if (getsockopt(fd, SOL_MPTCP, MPTCP_INFO, NULL, &len) < 0) {
         if (errno != EOPNOTSUPP && errno != ENOPROTOOPT)
             perror("getsockopt(MPTCP_INFO)"); /* Should not happen */
         return false; /* A fallback happened */
