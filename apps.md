@@ -33,19 +33,20 @@ free to look at this [spreadsheet](https://docs.google.com/spreadsheets/d/1F2-v4
 ## Linux distributions
 
 Here is a list of Linux distributions where MPTCP is supported by the default
-kernel since a certain version, with or without `mptcpd` (including `mptcpize`)
+kernel since a certain version, with or without
+[`mptcpd`](https://github.com/multipath-tcp/mptcpd) (including `mptcpize`)
 package available in the official repositories:
 
 | Name | Version | `mptcpd` | Comments |
 | --- | --- | :---: | --- |
 | [ArchLinux](https://archlinux.org) | ✅ | ✅ | Rolling release: MPTCP support is enabled since kernel v5.6. `mptcpd` is packaged in [AUR](https://aur.archlinux.org/packages/mptcpd). |
-| [Alpine Linux](https://alpinelinux.org) | 3.20 | ❌ | MPTCP was available before in 'linux-edge'. |
-| [Amazon Linux](https://aws.amazon.com/linux/amazon-linux-2023/) | 2023 | ❌ | |
-| [Azure Linux](https://github.com/microsoft/AzureLinux) | [3.0](https://github.com/microsoft/azurelinux/pull/10014) | ❌ | |
+| [Alpine Linux](https://alpinelinux.org) | 3.20 | ❌ | |
+| [Amazon Linux](https://aws.amazon.com/linux/amazon-linux-2023/) | 2023 | ❌ | `mptcpd` / `mptcpize` can be used from containers.  |
+| [Azure Linux](https://github.com/microsoft/AzureLinux) | [3.0](https://github.com/microsoft/azurelinux/pull/10014) | ❌ | `mptcpd` / `mptcpize` can be used from containers. |
 | [Debian](https://www.debian.org) | 12 | ✅ | |
 | [Fedora](https://fedoraproject.org) | 36 | ✅ | |
-| [Gentoo](https://www.gentoo.org) | ✅ | ✅ | Version: to be completed. |
-| [Home Assistant OS](https://www.home-assistant.io) | 12.2 | ❌ | |
+| [Gentoo](https://www.gentoo.org) | ✅ | ✅ | Rolling release. |
+| [Home Assistant OS](https://www.home-assistant.io) | 12.2 | ❌ | `mptcpd` / `mptcpize` can be used from containers. |
 | [NixOS](https://nixos.org) | ✅ | ❌ | Version: to be completed. `mptcpd` was packaged in an unofficial [flake](https://github.com/teto/mptcp-flake) |
 | [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 | ✅ | MPTCP-specific, where everything is automatically configured. |
 | [OpenWrt](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) | ✅ | |
