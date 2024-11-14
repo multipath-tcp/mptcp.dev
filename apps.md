@@ -40,6 +40,8 @@ package available in the official repositories:
 | --- | --- | :---: | --- |
 | [ArchLinux](https://archlinux.org) | ✅ | ❌ | Rolling release: MPTCP support is enabled since kernel v5.6. |
 | [Alpine Linux](https://alpinelinux.org) | 3.20 | ❌ | MPTCP was available before in 'linux-edge'. |
+| [Amazon Linux](https://aws.amazon.com/linux/amazon-linux-2023/) | 2023 | ❌ | |
+| [Azure Linux](https://github.com/microsoft/AzureLinux) | [3.0](https://github.com/microsoft/azurelinux/pull/10014) | ❌ | |
 | [Debian](https://www.debian.org) | 12 | ✅ | |
 | [Fedora](https://fedoraproject.org) | 36 | ✅ | |
 | [Gentoo](https://www.gentoo.org) | ✅ | ✅ | Version: to be completed. |
