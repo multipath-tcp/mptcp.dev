@@ -51,6 +51,7 @@ package available in the official repositories:
 | [OpenWrt](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) | ✅ | |
 | [Raspberry Pi OS](https://www.raspberrypi.com/software/) | 20231004 | ✅ | |
 | [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | 9 | ✅ | MPTCP is available as a tech-preview since v8.3. |
+| [Slackware](http://www.slackware.com/) | ✅ | ✅ | Version: to be completed. `mptcpd` is packaged in [SlackBuilds](https://slackbuilds.org/repository/15.0/network/mptcpd/) |
 | [SUSE](https://www.suse.com) | ✅ | ❌ | Version: to be completed. |
 | [Ubuntu](https://ubuntu.com) | 22.04 | ✅ | |
 | [Void](https://voidlinux.org) | ✅ | ❌ | Rolling release: MPTCP support is enabled since kernel v5.10. |
