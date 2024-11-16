@@ -167,7 +167,7 @@ long as the `subflows` [limit](#limits) has not been reached yet.
 
 ## Userspace Path-Manager
 
-With the userspace MPTCP path-manager -- `sysctl net.mptcp.pm_type=1` --
+With the userspace MPTCP path-manager -- `sysctl -w net.mptcp.pm_type=1` --
 different rules can be applied for each connection. The path-manager will then
 need to be controlled by a userspace daemon, i.e.
 [`mptcpd`](https://mptcpd.mptcp.dev). In this case, the configuration has to be

@@ -49,7 +49,7 @@ If available, MPTCP should be enabled by default. If not, change this `sysctl`
 knob:
 
 ```bash
-sysctl net.mptcp.enabled=1
+sysctl -w net.mptcp.enabled=1
 ```
 
 {: .note}
