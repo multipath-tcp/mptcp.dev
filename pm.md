@@ -31,21 +31,36 @@ As of Linux v5.19, there are two path managers controlled by the netns-aware
 
 ## In-kernel Path-Manager
 
-With the In-kernel Path-Manager, the same rules are applied to all connections.
-Address endpoints and limits can be set to control its behavior.
+With the (default) in-kernel Path-Manager, the same rules are applied to all
+connections. Address endpoints and limits can be set to control its behavior.
 
 ### Configuration
 
 This configuration can be automated with tools like
-[Network Manager](https://networkmanager.dev) -- in command lines, look for
-`mptcp-flags` in the [settings](https://networkmanager.dev/docs/api/latest/nm-settings-nmcli.html) --
-and [mptcpd](https://mptcpd.mptcp.dev). Here, the focus is on the manual
+[NetworkManager](https://networkmanager.dev) and
+[`mptcpd`](https://mptcpd.mptcp.dev). Here below, the focus is on the manual
 configuration, using the `ip mptcp` command. Please check the manual for more
 details: [`man ip-mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html).
 
+#### Automatic configuration
+
+{: .info }
+NetworkManager 1.40 or newer automatically configures MPTCP endpoints with
+the `subflow` flag ("client" mode) by default
+([source](https://networkmanager.dev/blog/networkmanager-1-40/#mptcp-support)),
+similar to what `mptcpd` does by default. **The manual configuration might then
+not be needed**.
+
+To change this behavior, with NetworkManager, look for the
+`connection.mptcp-flags` option in the
+[settings](https://networkmanager.dev/docs/api/latest/nm-settings-nmcli.html#nm-settings-nmcli.property.connection.mptcp-flags),
+while for `mptcpd`, look at the `/etc/mptcpd/mptcpd.conf` config file, or
+disable the service if it is not needed. Make sure not to have both
+NetworkManager and `mptcpd` conflicting to configure the MPTCP endpoints.
+
 #### Endpoints
 
-MPTCP endpoints can be configured with this command:
+MPTCP endpoints can be manually configured with this command:
 
 ```sh
 ip mptcp endpoint add <IP address> dev <interface> [ signal | subflow ] [ backup ] [ fullmesh ]
@@ -177,3 +192,15 @@ done on the userspace daemon side.
 `mptcpd` can help to create custom userspace Path-Managers: please check this
 [Plugins](https://github.com/multipath-tcp/mptcpd/wiki/Plugins) page for more
 details about that.
+
+## Notes
+
+Be aware that a strict `rp_filter` breaks MPTCP use-cases. So if MPTCP handling
+on an interface is enabled, it is recommended to relax a strict setting (`1`) to
+loose reverse path filtering (`2`):
+
+```bash
+sysctl -w net.ipv4.conf.<INTERFACE>.rp_filter=2
+```
+
+That's something NetworkManager 1.40 or newer does automatically.
