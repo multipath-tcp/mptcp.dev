@@ -164,6 +164,10 @@ established*, and each time a new subflow is established. This behaviour might
 change in the future, if someone implements the ticket
 [#334](https://github.com/multipath-tcp/mptcp_net-next/issues/334).
 
+By default, [automated tools](#automatic-configuration) will add
+[`subflow`](#endpoints) endpoints, not [`signal`](#endpoints) ones. This
+behavior can be modified, please check their manual.
+
 #### Creating new subflows
 
 There are two cases that involve the creation of new subflows, if allowed by
