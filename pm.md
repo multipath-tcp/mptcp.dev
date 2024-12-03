@@ -156,7 +156,8 @@ typically when the first data has been sent.
 #### Announcing new addresses
 
 All endpoints flagged as [`signal`](#endpoints) will be announced via an
-`ADD_ADDR` notification.
+`ADD_ADDR` notification. That is typically what a server would do, to let
+clients connect to other available addresses if needed.
 
 This will be done, one at a time: once the MPTCP connection is *fully
 established*, and each time a new subflow is established. This behaviour might
