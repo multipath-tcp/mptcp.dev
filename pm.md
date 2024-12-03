@@ -93,7 +93,12 @@ additional address and port. This was also called the `ndiffports` technique.
 When used with the [`allow_join_initial_addr_port`](https://docs.kernel.org/networking/mptcp-sysctl.html)
 sysctl set to 0, this can be useful for servers deployed behind a load balancer.
 
-The IP address is an IPv4 or IPv6 address. The endpoints are netns-aware.
+The IP address is an IPv4 or IPv6 address. The endpoints are netns-aware. The
+current endpoints can be seen using:
+
+```sh
+ip mptcp endpoint
+```
 
 #### Example
 
@@ -123,7 +128,12 @@ ip mptcp limits set [ subflows NR ] [ add_addr_accepted NR ]
   notification from the other peer -- that will result in the creation of
   subflows, typically only for the client side (default is 0).
 
-The limits are per MPTCP connection, and netns-aware.
+The limits are per MPTCP connection, and netns-aware. The current limits can be
+seen using:
+
+```sh
+ip mptcp limits
+```
 
 {: .note}
 It is possible to reach the limits with fewer established subflows than
