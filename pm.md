@@ -34,15 +34,12 @@ As of Linux v5.19, there are two path managers controlled by the netns-aware
 With the (default) in-kernel Path-Manager, the same rules are applied to all
 connections. Address endpoints and limits can be set to control its behavior.
 
-### Configuration
-
-This configuration can be automated with tools like
+Its configuration can be automated with tools like
 [NetworkManager](https://networkmanager.dev) and
-[`mptcpd`](https://mptcpd.mptcp.dev). Here below, the focus is on the manual
-configuration, using the `ip mptcp` command. Please check the manual for more
-details: [`man ip-mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html).
+[`mptcpd`](https://mptcpd.mptcp.dev), or done manually using the `ip mptcp`
+command.
 
-#### Automatic configuration
+### Automatic configuration
 
 {: .info }
 NetworkManager 1.40 or newer automatically configures MPTCP endpoints with
@@ -57,6 +54,11 @@ To change this behavior, with NetworkManager, look for the
 while for `mptcpd`, look at the `/etc/mptcpd/mptcpd.conf` config file, or
 disable the service if it is not needed. Make sure not to have both
 NetworkManager and `mptcpd` conflicting to configure the MPTCP endpoints.
+
+### Manual configuration
+
+This can be done using the `ip mptcp` command. Please check the manual for more
+details: [`man ip-mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html).
 
 #### Endpoints
 
