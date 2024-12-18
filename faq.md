@@ -209,3 +209,52 @@ A way to reduce these retransmissions and avoid dropped packets at the NIC level
 is to increase the NIC RX queue. See issue
 [#253](https://github.com/multipath-tcp/mptcp_net-next/issues/253) for more
 details.
+
+## How to enable MPTCP support with OpenSSH?
+
+<details markdown="block">
+<summary>So far, OpenSSH maintainers do not want to add a "native" MPTCP
+support, because this feature is not available on all platforms, but "only" on
+Linux distributions and macOS:
+<a href="https://github.com/openssh/openssh-portable/pull/335" target=_blank>[1]</a>
+<a href="https://github.com/openssh/openssh-portable/pull/547" target=_blank>[2]</a>.
+Maybe this native support will come later on. In the meantime, there are
+workarounds: </summary>
+- On the server side:
+  - If systemd 257 or newer is in charge of creating the SSH socket, edit its
+    config with `sudo systemctl edit ssh.socket`, then add these two lines:
+    ```
+    [Socket]
+    SocketProtocol=mptcp
+    ```
+  - If an older systemd version is used -- or if it is not in charge of the SSH
+    socket -- first, disable the SSH socket if used:
+    ```
+    systemctl disable --now ssh.socket
+    rm -f /etc/systemd/system/ssh.service.d/00-socket.conf
+    rm -f /etc/systemd/system/ssh.socket.d/addresses.conf
+    systemctl daemon-reload
+    systemctl enable --now ssh.service
+    ```
+    Then force the SSH service to create MPTCP sockets instead of TCP ones:
+    ```
+    mptcpize enable ssh.service
+    ```
+  - If another system manager is used, prefix the execution of `sshd` with
+    `mptcpize run`, or set `LD_PRELOAD` to the full path of
+    `libmptcpwrap.so.0.0.1`.
+- On the client side:
+  - Prefix the command line with `mptcpize run`, e.g.
+    ```
+    mptcpize run ssh example.org
+    ```
+  - Set the `ProxyCommand` option to use `mptcpize run`, e.g. by using this line
+    in the `~/.ssh/config` file:
+    ```
+    Host (...)
+        ProxyCommand mptcpize run ssh -W %h:%p -l %r -p %p %h
+    ```
+    This is useful not to require a prefix for all `ssh` commands, or if SSH is
+    used by other tools, e.g. `git`, a file manager like Nautilus, Filezilla,
+    etc.
+</details> {: .ctsm}
