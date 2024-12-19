@@ -75,8 +75,9 @@ values per subflow.
 ## What are the supported operating systems?
 <details markdown="block">
 <summary>MPTCP is supported in the official Linux kernel starting with version
-5.6. Any applications can [easily use it](implementation.html). The adoption of
-MPTCP extends beyond to various platforms including macOS. But... </summary>
+5.6. Any applications can <a href="implementation.html">easily use it</a>. The
+adoption of MPTCP extends beyond to various platforms including macOS.
+But... </summary>
 
 The use of MPTCP on macOS differs from Linux:
 - Its usage is limited to the client side, to establish new MPTCP connections
