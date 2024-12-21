@@ -89,8 +89,8 @@ MPTCP is also available on [iOS](macOS.html) (client side only).
 | --- | --- | --- |
 | [Apple Maps](https://www.apple.com/maps/) | [>= iOS 13](https://www.tessares.net/apple-pushes-multipath-tcp-further/) | Enabled by default |
 | [Apple Music](https://www.apple.com/music/) | [>= iOS 13](https://www.tessares.net/apple-pushes-multipath-tcp-further/) | Enabled by default |
+| [Apple Siri](https://www.apple.com/siri/) | [>= iOS 7](https://www.tessares.net/apples-mptcp-story-so-far/) | Enabled by default |
 | [Nextcloud](https://nextcloud.com) | [v6.1.4](https://github.com/nextcloud/NextcloudKit/pull/85) | Enabled by default |
-| [Siri](https://www.apple.com/fr/siri/) | [>= iOS 7](https://www.tessares.net/apples-mptcp-story-so-far/) | Enabled by default |
 | [VLC](https://www.videolan.org/vlc/) | [v4.0](https://code.videolan.org/videolan/vlc-ios/-/commit/210c88b3e4e0dac0e4f2d18b3e3dfbe664693658) | Enabled by default |
 
 ## Others?
