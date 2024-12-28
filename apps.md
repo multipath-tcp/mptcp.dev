@@ -49,7 +49,7 @@ package available in the official repositories:
 | [Home Assistant OS](https://www.home-assistant.io) | 12.2 | ❌ | `mptcpd` / `mptcpize` can be used from containers. |
 | [NixOS](https://nixos.org) | ✅ | ❌ | Version: to be completed. `mptcpd` was packaged in an unofficial [flake](https://github.com/teto/mptcp-flake) |
 | [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 | ✅ | MPTCP-specific, where everything is automatically configured. |
-| [OpenWrt](https://openwrt.org) | [v24](https://github.com/openwrt/openwrt/pull/16786) | ✅ | |
+| [OpenWrt](https://openwrt.org) | [24.10](https://github.com/openwrt/openwrt/pull/16786) | ✅ | |
 | [Raspberry Pi OS](https://www.raspberrypi.com/software/) | 20231004 | ✅ | |
 | [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | 9 | ✅ | MPTCP is available as a tech-preview since v8.3. |
 | [Slackware](http://www.slackware.com/) | ✅ | ✅ | Version: to be completed. `mptcpd` is packaged in [SlackBuilds](https://slackbuilds.org/repository/15.0/network/mptcpd/) |
