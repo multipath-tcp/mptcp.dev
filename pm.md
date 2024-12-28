@@ -59,6 +59,9 @@ NetworkManager and `mptcpd` conflicting to configure the MPTCP endpoints.
 
 This can be done using the `ip mptcp` command. Please check the manual for more
 details: [`man ip-mptcp`](https://man7.org/linux/man-pages/man8/ip-mptcp.8.html).
+Note that Busybox's `ip` command doesn't support MPTCP yet. You need the "full"
+version from the [IPRoute2](https://wiki.linuxfoundation.org/networking/iproute2)
+project.
 
 #### Endpoints
 
