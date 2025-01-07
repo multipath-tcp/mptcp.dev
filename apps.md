@@ -47,7 +47,7 @@ package available in the official repositories:
 | [Fedora](https://fedoraproject.org) | 36 | ✅ | |
 | [Gentoo](https://www.gentoo.org) | ✅ | ✅ | Rolling release. |
 | [Home Assistant OS](https://www.home-assistant.io) | 12.2 | ❌ | `mptcpd` / `mptcpize` can be used from containers. |
-| [NixOS](https://nixos.org) | ✅ | ❌ | Version: to be completed. `mptcpd` was packaged in an unofficial [flake](https://github.com/teto/mptcp-flake) |
+| [NixOS](https://nixos.org) | ✅ | ✅ | `mptcpd` has been [accepted](https://github.com/NixOS/nixpkgs/pull/355928) in Jan. 2025 |
 | [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 | ✅ | MPTCP-specific, where everything is automatically configured. |
 | [OpenWrt](https://openwrt.org) | [24.10](https://github.com/openwrt/openwrt/pull/16786) | ✅ | `ip-full` package is required to use `ip mptcp` command. |
 | [Raspberry Pi OS](https://www.raspberrypi.com/software/) | 20231004 | ✅ | |
