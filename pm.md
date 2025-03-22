@@ -6,10 +6,10 @@ nav_titles: true
 titles_max_depth: 2
 ---
 
-The Path Manager is in charge of *subflows*, from creation to deletion, and also
-address announcements. Typically, it is the client side that initiates subflows,
-and the server side that announces additional addresses via the `ADD_ADDR` and
-`REMOVE_ADDR` options.
+The Path Manager is in charge of *subflows* (another word for *paths*), from
+creation to deletion, and also address announcements. Typically, it is the
+client side that initiates subflows, and the server side that announces
+additional addresses via the `ADD_ADDR` and `REMOVE_ADDR` options.
 
 ```mermaid
 graph LR;
