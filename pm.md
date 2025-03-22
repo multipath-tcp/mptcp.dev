@@ -6,10 +6,10 @@ nav_titles: true
 titles_max_depth: 2
 ---
 
-The Path Manager is in charge of *subflows*, from creation to deletion, and also
-address announcements. Typically, it is the client side that initiates subflows,
-and the server side that announces additional addresses via the `ADD_ADDR` and
-`REMOVE_ADDR` options.
+The Path Manager is in charge of *subflows* (another word for *paths*), from
+creation to deletion, and also address announcements. Typically, it is the
+client side that initiates subflows, and the server side that announces
+additional addresses via the `ADD_ADDR` and `REMOVE_ADDR` options.
 
 ```mermaid
 graph LR;
@@ -81,7 +81,8 @@ One of the following flags needs to be set:
 - `signal`: The endpoint will be announced to each peer via an MPTCP `ADD_ADDR`
   sub-option. Typically, a server would be responsible for this.
 - `subflow`: The endpoint will be used to create an additional subflow using
-  the given source IP address. A client would typically do this.
+  the given source IP address to the other peer's IP address from the initial
+  subflow. A client would typically do this.
 
 Optionally, the following flags can be added next to one of the previous ones:
 - `backup`: Subflows created from this endpoint instruct the peers to only send
