@@ -245,17 +245,19 @@ workarounds: </summary>
     `mptcpize run`, or set `LD_PRELOAD` to the full path of
     `libmptcpwrap.so.0.0.1`.
 - On the client side:
-  - Prefix the command line with `mptcpize run`, e.g.
+  - Prefix the SSH command line (or `scp`, `rsync`, `git`, etc.) with
+    `mptcpize run`, e.g.
     ```
     mptcpize run ssh example.org
     ```
-  - Set the `ProxyCommand` option to use `mptcpize run`, e.g. by using this line
-    in the `~/.ssh/config` file:
+  - An alternative is to set the `ProxyCommand` option to use `mptcpize run`,
+    e.g. by using this line in the `~/.ssh/config` file:
     ```
     Host (...)
         ProxyCommand mptcpize run ssh -W %h:%p -l %r -p %p %h
     ```
-    This is useful not to require a prefix for all `ssh` commands, or if SSH is
-    used by other tools, e.g. `git`, a file manager like Nautilus, Filezilla,
-    etc.
+    This proxy command is less efficient, because it will force `ssh` to be
+    launched a second time as a proxy. But it is useful not to require a prefix
+    for all `ssh` commands, or if SSH is used by other tools, e.g. `git`, a file
+    manager like Nautilus, Filezilla, etc.
 </details> {: .ctsm}
