@@ -222,7 +222,8 @@ Maybe this native support will come later on. In the meantime, there are
 workarounds: </summary>
 - On the server side:
   - If systemd 257 or newer is in charge of creating the SSH socket, edit its
-    config with `sudo systemctl edit ssh.socket`, then add these two lines:
+    config with `systemctl edit ssh.socket` to add the following lines, then
+    restart the socket with `systemctl restart ssh.socket`:
     ```
     [Socket]
     SocketProtocol=mptcp
