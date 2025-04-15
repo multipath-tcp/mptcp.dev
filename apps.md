@@ -30,6 +30,7 @@ mentioned. Please note that other apps can be forced to use it by following
 | [sing-box](https://sing-box.sagernet.org) | [v1.4.0](https://github.com/SagerNet/sing-box/commit/1019ecfdcfb7) | [`"tcp_multi_path": true`](https://sing-box.sagernet.org/configuration/shared/listen/#tcp_multi_path) |
 | [SystemD](https://systemd.io/) | [v257](https://github.com/systemd/systemd/pull/32958) | [`SocketProtocol=mptcp`](https://www.freedesktop.org/software/systemd/man/latest/systemd.socket.html) (`[Socket]` section) |
 | [v2ray-core](https://github.com/v2fly/v2ray-core) | [v5.17.0](https://github.com/v2fly/v2ray-core/pull/3109) | [`"mptcp": true`](https://www.v2fly.org/en_US/config/transport.html#sockoptobject) |
+| [Valkey](https://valkey.io) | [v8.2.0](https://github.com/valkey-io/valkey/pull/1811) | [`mptcp yes`](https://github.com/valkey-io/valkey/commit/4a92db917858696120c9ef078b08f8e17c21125b#diff-dd9a6c95849b36490b9bae44e9f0d3dbcd7a93080cf2d5aee6d6033586ab8fa4R158) |
 
 Do not hesitate to add native MPTCP support in more apps! For some ideas, feel
 free to look at this [spreadsheet](https://docs.google.com/spreadsheets/d/1F2-v4Dhdn0rMyJZ3m5chyNiwg7oj0rpSR11GEykatJw/edit#gid=0).
