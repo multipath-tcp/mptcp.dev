@@ -71,6 +71,7 @@ Do not hesitate to contribute to the packaging, and to update this table!
 
 | Name | Version | Comment |
 | --- | --- | --- |
+| [NFTables](https://wiki.nftables.org/wiki-nftables/index.php/Main_Page) | [v1.0.2](https://lore.kernel.org/netdev/YhO5Pn+6+dgAgSd9@salvia/) | Can specify `mptcp` in TCP option, subtype IDs + symbols since [v1.1.2](https://lore.kernel.org/netdev/Z_1KxMUDT0D8e6wH@calendula/) |
 | [pTCPDump](https://github.com/mozillazg/ptcpdump) | [v0.24.0](https://github.com/mozillazg/ptcpdump/pull/152) | Can decode MPTCP options in TCP packets |
 | [Syzkaller](https://github.com/google/syzkaller) | [Feb 2020](https://github.com/google/syzkaller/pull/1579) | Can exercise MPTCP sockets and Netlink APIs |
 | [TCPDump](https://www.tcpdump.org/) | [4.5.0](https://github.com/the-tcpdump-group/tcpdump/commit/578dd316f3) | Can decode MPTCP options in TCP packets |
