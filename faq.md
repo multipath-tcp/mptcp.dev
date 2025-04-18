@@ -210,6 +210,29 @@ is to increase the NIC RX queue. See issue
 [#253](https://github.com/multipath-tcp/mptcp_net-next/issues/253) for more
 details.
 
+## Is GRO supported with MPTCP?
+
+Software Generic Receive Offload (GRO) will merge packets when the MAC headers
+are identical, and only a few TCP and IP headers can differ. In other words, if
+the TCP options of one packet following another one are identical, they can be
+merged.
+
+MPTCP adds TCP options in each packet, but when TCP Segmentation Offload (TSO)
+is used, the same MPTCP options will be duplicated in each packet, which is
+allowed by the specifications. When such packets are received, and if all the
+other conditions are met, software GRO can merge all the ones linked to the same
+packet before TSO was used on the sender side, because the TCP options are
+identical. Software GRO can then be supported when MPTCP is used.
+
+With hardware GRO, in theory, NIC's can use the same technique. But some of
+them, like many Intel ones, are more "cautious", and they will not merge TCP
+packets if they contain non-supported TCP options, i.e. anything but TCP
+timestamps. With such NIC's, hardware GRO cannot work with MPTCP, and a fallback
+to software GRO will be done.
+
+When comparing MPTCP performances with another protocol, it is then interesting
+to check if hardware GRO is used in both cases.
+
 ## How to enable MPTCP support with OpenSSH?
 
 <details markdown="block">
