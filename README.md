@@ -20,6 +20,7 @@ website for those who want to contribute.
 - `apps`, the list of currently apps supporting MPTCP natively.
 - `details` contains detailed explanations of the kernel implementation.
 - `contributing`, details for those working on the project.
+- `load-balancer`, explanations about deployments behind a load-balancer.
 
 ## Front matter
 At the top of all pages a section between two `---` lines contains information
