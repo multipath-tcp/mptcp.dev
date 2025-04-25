@@ -108,3 +108,9 @@ Here is a checklist for CDN owners implementing MPTCP support:
         corresponding server.
   - [ ] Optionally block all non MPTCP connections, and rate limit connections
         requests.
+
+{: .note}
+It is also important to note that, when clients don't request to use MPTCP,
+the kernel will create "plain" TCP sockets. Server applications will then
+continue to deal with "plain" TCP sockets when connections are `accept`ed,
+making the performance impact minimal.
