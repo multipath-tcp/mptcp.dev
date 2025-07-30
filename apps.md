@@ -14,6 +14,7 @@ mentioned. Please note that other apps can be forced to use it by following
 
 | Name | Version | How to use |
 | --- | --- | --- |
+| [Angie](https://en.angie.software) | [1.10.0](https://github.com/webserver-llc/angie/commit/112abf23fbc1b837ef844d34b8b37b6d6b99de07) | [`listen <address|port> multipath`](https://en.angie.software/angie/docs/configuration/modules/http/#listen) |
 | [Apache HTTP Server](https://httpd.apache.org) | [2.5.1](https://svn.apache.org/viewvc?view=revision&revision=1920586) | [`Listen 80 options=multipathtcp`](https://github.com/apache/httpd/pull/476/commits/0d56d533f4af) or [`ProxyPass multipathtcp=On`](https://github.com/apache/httpd/pull/476/commits/dfa6aec0dc74) |
 | [Apache Traffic Server](https://trafficserver.apache.org/) | [9.2.4](https://github.com/apache/trafficserver/pull/10701) | [`server_ports: <port> mptcp`](https://docs.trafficserver.apache.org/en/latest/admin-guide/files/records.yaml.en.html) |
 | [Caddy](https://caddyserver.com) | [v2.7.4](https://github.com/caddyserver/caddy/releases/tag/v2.7.4) | Enabled by default since [v2.10.0](https://github.com/caddyserver/caddy/releases/tag/v2.10.0) (Go 1.24), controllable with [`GODEBUG=multipath=`](https://go.dev/doc/godebug) since [v2.7.4](https://github.com/caddyserver/caddy/releases/tag/v2.7.4) (Go 1.21) |
