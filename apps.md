@@ -20,6 +20,7 @@ mentioned. Please note that other apps can be forced to use it by following
 | [cURL](https://curl.se/) | [8.9.0](https://github.com/curl/curl/pull/13278) | [`--mptcp`](https://curl.se/docs/manpage.html) |
 | [dae](https://github.com/daeuniverse/dae) | [v0.8.0](https://github.com/daeuniverse/dae/pull/601) | [`global { mptcp: true }`](https://github.com/daeuniverse/dae/blob/main/example.dae) |
 | [Envoy](https://www.envoyproxy.io/) | [1.21.0](https://github.com/envoyproxy/envoy/pull/18780) | [`"enable_mptcp": "true"`](https://www.envoyproxy.io/docs/envoy/v1.21.6/api-v3/config/listener/v3/listener.proto#envoy-v3-api-field-config-listener-v3-listener-enable-mptcp) (`listening` config) |
+| [freenginx](https://freenginx.org) | [1.27.5](https://freenginx.org/hg/nginx/rev/cb20978439c8) | [`listen <address|port> multipath`](https://freenginx.org/en/docs/http/ngx_http_core_module.html#multipath) |
 | [GoLang](https://go.dev) | [1.21](https://github.com/golang/go/issues/56539) | Apps written in Go can easily [enable MPTCP support](implementation.html). [Since 1.24](https://go-review.googlesource.com/c/go/+/607715), it is enabled on the server side by default |
 | [HAProxy](https://www.haproxy.org) | [3.1.0](https://git.haproxy.org/?p=haproxy.git;a=commit;h=20efb856e) | [`mptcp{,4,6}@<address>`](https://github.com/haproxy/haproxy/blob/master/examples/mptcp.cfg) |
 | [iperf3](https://software.es.net/iperf/) | [3.19](https://github.com/esnet/iperf/pull/1661) | `-m` or `--mptcp` |
