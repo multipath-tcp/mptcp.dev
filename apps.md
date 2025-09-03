@@ -49,7 +49,7 @@ package available in the official repositories:
 | Name | Version | `mptcpd` | Comments |
 | --- | --- | :---: | --- |
 | [ArchLinux](https://archlinux.org) | ✅ | ✅ | Rolling release: MPTCP support is enabled since kernel v5.6. `mptcpd` is packaged in [AUR](https://aur.archlinux.org/packages/mptcpd). |
-| [Alpine Linux](https://alpinelinux.org) | 3.20 | ✅ | [`mptcpd`](https://pkgs.alpinelinux.org/packages?name=mptcp*) is in [`edge/community`](https://gitlab.alpinelinux.org/alpine/aports/-/merge_requests/79478), expected to be in 3.22. |
+| [Alpine Linux](https://alpinelinux.org) | 3.20 | ✅ | [`mptcpd`](https://pkgs.alpinelinux.org/packages?name=mptcp*) is available since v3.22. |
 | [Amazon Linux](https://aws.amazon.com/linux/amazon-linux-2023/) | 2023 | ❌ | `mptcpd` / `mptcpize` can be used from containers.  |
 | [Azure Linux](https://github.com/microsoft/AzureLinux) | [3.0](https://github.com/microsoft/azurelinux/pull/10014) | ❌ | `mptcpd` / `mptcpize` can be used from containers. |
 | [Debian](https://www.debian.org) | 12 | ✅ | |
