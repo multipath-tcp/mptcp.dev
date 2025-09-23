@@ -59,6 +59,7 @@ package available in the official repositories:
 | [Kylin OS](https://www.kylinos.cn) | V11 | ✅ | |
 | [NixOS](https://nixos.org) | ✅ | ✅ | `mptcpd` has been [accepted](https://github.com/NixOS/nixpkgs/pull/355928) in Jan. 2025 |
 | [Open MPTCP Router](https://www.openmptcprouter.com) | v0.60 | ✅ | MPTCP-specific, where everything is automatically configured. |
+| [openEuler](https://www.openeuler.openatom.cn) | 24.03 | ✅ | [`mptcpd`](https://gitee.com/src-openeuler/mptcpd/pulls/1) 0.13 will be included in 24.03 SP3. |
 | [OpenWrt](https://openwrt.org) | [24.10](https://github.com/openwrt/openwrt/pull/16786) | ✅ | `ip-full` package is required to use `ip mptcp` command. |
 | [Raspberry Pi OS](https://www.raspberrypi.com/software/) | 20231004 | ✅ | |
 | [RHEL](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux) | 9 | ✅ | MPTCP is available as a tech-preview since v8.3. |
