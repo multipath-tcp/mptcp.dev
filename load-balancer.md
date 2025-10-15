@@ -76,7 +76,7 @@ In other words, on Linux, it means that each server should:
   sysctl knob to `0`
 - add a `signal` MPTCP endpoint with a dedicated IP address and/or port:
   ```
-  ip mptcp endpoint add <public IP address> dev <interface> [ port NR  ] signal
+  ip mptcp endpoint add <public IP address> dev <interface> [ port NR ] signal
   ```
 
 {: .note}
