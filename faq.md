@@ -283,8 +283,8 @@ workarounds: </summary>
     for all `ssh` commands, or if SSH is used by other tools, e.g. `git`, a file
     manager like Nautilus, Filezilla, etc.
   - Yet another alternative is to use `ProxyCommand` with a small script,
-    combined with `ProxyUseFdpass` which avoids executing `ssh` twice and is easier to use
-    with jump hosts. With this
+    combined with `ProxyUseFdpass` which avoids executing `ssh` twice and is
+    easier to use with jump hosts. With this
     [script](https://gist.github.com/jluebbe/1bd54cf928f6cfed33308d04645e1cf6)
     from [Jan Lübbe](https://github.com/jluebbe), the `~/.ssh/config` file can
     be modified to have:
