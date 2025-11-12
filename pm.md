@@ -90,7 +90,8 @@ Optionally, the following flags can be added next to one of the previous ones:
   data on it when all non-backup subflows are unavailable.
 - `fullmesh`: The MPTCP path manager will try to create an additional subflow
   for each known peer address, using this endpoint as the source IP address. It
-  requires the `subflow` flag, and it is not compatible with the `signal` one.
+  is typically used with the `subflow` flag, and it is not compatible with the
+  `signal` one.
 
 It is also possible to specify a `port` number with the `signal` endpoints: this
 will advertise an IP address and a port number, and accept new subflows on this
