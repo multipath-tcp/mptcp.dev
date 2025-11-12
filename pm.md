@@ -26,8 +26,9 @@ graph LR;
 ```
 
 As of Linux v5.19, there are two path managers controlled by the netns-aware
-`net.mptcp.pm_type` sysctl knob: the [in-kernel](#in-kernel-path-manager) one
-(type `0`), and the [userspace](#userspace-path-manager) one (type `1`).
+`net.mptcp.path_manager` sysctl knob (or `net.mptcp.pm_type` on older kernels):
+the [`kernel`](#in-kernel-path-manager) one, and the
+[`userspace`](#userspace-path-manager) one.
 
 ## In-kernel Path-Manager
 
@@ -203,11 +204,11 @@ long as the `subflows` [limit](#limits) has not been reached yet.
 
 ## Userspace Path-Manager
 
-With the userspace MPTCP path-manager -- `sysctl -w net.mptcp.pm_type=1` --
-different rules can be applied for each connection. The path-manager will then
-need to be controlled by a userspace daemon, i.e.
-[`mptcpd`](https://mptcpd.mptcp.dev). In this case, the configuration has to be
-done on the userspace daemon side.
+With the userspace MPTCP path-manager -- `sysctl -w net.mptcp.path_manager=userspace`,
+or `net.mptcp.pm_type=1` on older kernels -- different rules can be applied for
+each connection. The path-manager will then need to be controlled by a userspace
+daemon, i.e. [`mptcpd`](https://mptcpd.mptcp.dev). In this case, the
+configuration has to be done on the userspace daemon side.
 
 {: .note}
 `mptcpd` can help to create custom userspace Path-Managers: please check this
