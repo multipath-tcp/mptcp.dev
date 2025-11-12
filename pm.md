@@ -69,7 +69,7 @@ project.
 MPTCP endpoints can be manually configured with this command:
 
 ```sh
-ip mptcp endpoint add <IP address> dev <interface> [ signal | subflow ] [ backup ] [ fullmesh ]
+ip mptcp endpoint add <IP address> dev <interface> [ signal | subflow ] [ laminar ] [ backup ] [ fullmesh ]
 ```
 
 {: .warning}
@@ -86,12 +86,18 @@ One of the following flags needs to be set:
   subflow. A client would typically do this.
 
 Optionally, the following flags can be added next to one of the previous ones:
+- `laminar`: (introduced in [v6.18](https://git.kernel.org/torvalds/c/539f6b9de39e))
+  The endpoint will be used to create new subflows from the associated address
+  to additional addresses announced by the other peer. It is typically used with
+  the `subflow` flag, and this endpoint will only be used in one subflow per
+  MPTCP connection. A client would typically create endpoints with this
+  `laminar` flag and the `subflow` one.
 - `backup`: Subflows created from this endpoint instruct the peers to only send
   data on it when all non-backup subflows are unavailable.
 - `fullmesh`: The MPTCP path manager will try to create an additional subflow
   for each known peer address, using this endpoint as the source IP address. It
-  is typically used with the `subflow` flag, and it is not compatible with the
-  `signal` one.
+  is typically used with the `subflow` flag, it is not compatible with the
+  `signal` one, and it takes precedence over the `laminar` one.
 
 It is also possible to specify a `port` number with the `signal` endpoints: this
 will advertise an IP address and a port number, and accept new subflows on this
@@ -171,8 +177,9 @@ change in the future, if someone implements the ticket
 [#334](https://github.com/multipath-tcp/mptcp_net-next/issues/334).
 
 By default, [automated tools](#automatic-configuration) will add
-[`subflow`](#endpoints) endpoints, not [`signal`](#endpoints) ones. This
-behavior can be modified, please check their manual.
+[`subflow`](#endpoints) endpoints (eventually with the [`laminar`](#endpoints)
+flag), not [`signal`](#endpoints) ones. This behavior can be modified, please
+check their manual.
 
 #### Creating new subflows
 
@@ -187,9 +194,12 @@ the `subflows` [limit](#limits):
 - Upon the reception of an [`ADD_ADDR`](#announcing-new-addresses), and if the
   `add_addr_accepted` [limits](#limits) has not been reached yet, a new subflow
   will be created using the local address the routing configuration will pick,
-  except if there are endpoints with the [`fullmesh`](#endpoints) flag. In this
-  case, each endpoints with the [`fullmesh`](#endpoints) flag will be used to
-  create a new subflow to the announced address.
+  except if there are endpoints with the [`fullmesh`](#endpoints) or
+  [`laminar`](#endpoints) flags. In the `fullmesh` case, each endpoint with the
+  [`fullmesh`](#endpoints) flag will be used to create a new subflow to the
+  announced address. In the `laminar` case, an unused [`laminar`](#endpoints)
+  endpoint, if any, will be picked to create one subflow to the announced
+  address.
 
 Note that when subflows are closed before the end of a connection -- e.g. due to
 an error on the network, or if the other peer closed subflows -- the
