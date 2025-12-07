@@ -24,7 +24,7 @@ mentioned. Please note that other apps can be forced to use it by following
 | [freenginx](https://freenginx.org) | [1.27.5](https://freenginx.org/hg/nginx/rev/cb20978439c8) | [`listen <address|port> multipath`](https://freenginx.org/en/docs/http/ngx_http_core_module.html#multipath) |
 | [GoLang](https://go.dev) | [1.21](https://github.com/golang/go/issues/56539) | Apps written in Go can easily [enable MPTCP support](implementation.html). [Since 1.24](https://go-review.googlesource.com/c/go/+/607715), it is enabled on the server side by default |
 | [HAProxy](https://www.haproxy.org) | [3.1.0](https://git.haproxy.org/?p=haproxy.git;a=commit;h=20efb856e) | [`mptcp{,4,6}@<address>`](https://github.com/haproxy/haproxy/blob/master/examples/mptcp.cfg) |
-| [HPN SSH](https://www.psc.edu/hpn-ssh-home/) | [18.7.0](https://github.com/rapier1/hpn-ssh/releases/tag/hpn-18.7.0) | `-oUseMPTCP=yes` |
+| [HPN SSH](https://www.psc.edu/hpn-ssh-home/) | [18.7.0](https://github.com/rapier1/hpn-ssh/releases/tag/hpn-18.7.0) | `-oUseMPTCP=yes`. Note: this is a fork of [OpenSSH](/faq.html#how-to-enable-mptcp-support-with-openssh) |
 | [iperf3](https://software.es.net/iperf/) | [3.19](https://github.com/esnet/iperf/pull/1661) | `-m` or `--mptcp` |
 | [Lighttpd 1.4](https://www.lighttpd.net/) | [1.4.76](https://github.com/lighttpd/lighttpd1.4/pull/132) | [`server.feature-flags = ( "server.network-mptcp" => "enable" )`](https://redmine.lighttpd.net/projects/lighttpd/wiki/Server_feature-flagsDetails) |
 | [QEmu](https://www.qemu.org/) | [6.1](https://lore.kernel.org/qemu-devel/20210421112834.107651-1-dgilbert@redhat.com/) | [`<ip>:<port>,mptcp`](https://www.qemu.org/docs/master/interop/qemu-qmp-ref.html#qapidoc-48) |
