@@ -76,7 +76,7 @@ ip mptcp endpoint add <IP address> dev <interface> [ signal | subflow ] [ lamina
 It is important to specify the network interface linked to the address by adding
 `dev <interface>`. If not, the routing will probably not be done properly, and
 will require manual configuration, see below:
-[Manual Routing Configuration](#manual-routing-configuration).
+[Manual Routing Configuration](setup.html#manual-routing-configuration).
 
 One of the following flags needs to be set:
 - `signal`: The endpoint will be announced to each peer via an MPTCP `ADD_ADDR`
