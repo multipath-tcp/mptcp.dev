@@ -36,7 +36,7 @@ addresses, ports, devices, marks, CGroup, etc.
 to configure the MPTCP path-manager, but also to monitor path-manager events:
 
 ```bash
-ip mptcp monitor
+ip -ts mptcp monitor
 ```
 
 
