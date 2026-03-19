@@ -27,6 +27,7 @@ mentioned. Please note that other apps can be forced to use it by following
 | [HPN SSH](https://www.psc.edu/hpn-ssh-home/) | [18.7.0](https://github.com/rapier1/hpn-ssh/releases/tag/hpn-18.7.0) | `-oUseMPTCP=yes`. Note: this is a fork of [OpenSSH](/faq.html#how-to-enable-mptcp-support-with-openssh) |
 | [iperf3](https://software.es.net/iperf/) | [3.19](https://github.com/esnet/iperf/pull/1661) | `-m` or `--mptcp` |
 | [Lighttpd 1.4](https://www.lighttpd.net/) | [1.4.76](https://github.com/lighttpd/lighttpd1.4/pull/132) | [`server.feature-flags = ( "server.network-mptcp" => "enable" )`](https://redmine.lighttpd.net/projects/lighttpd/wiki/Server_feature-flagsDetails) |
+| [NGINX](https://nginx.org) | [1.29.7](https://github.com/nginx/nginx/pull/931) | [`listen <address|port> multipath`](https://nginx.org/en/docs/http/ngx_http_core_module.html#multipath) |
 | [QEmu](https://www.qemu.org/) | [6.1](https://lore.kernel.org/qemu-devel/20210421112834.107651-1-dgilbert@redhat.com/) | [`<ip>:<port>,mptcp`](https://www.qemu.org/docs/master/interop/qemu-qmp-ref.html#qapidoc-48) |
 | [Shadowsocks libev](https://github.com/shadowsocks/shadowsocks-libev) | [v3.3.6](https://github.com/shadowsocks/shadowsocks-libev/pull/2902) | [`--mptcp`](https://github.com/shadowsocks/shadowsocks-libev) |
 | [Shadowsocks Rust](https://github.com/shadowsocks/shadowsocks-rust) | [v1.16.0](https://github.com/shadowsocks/shadowsocks-rust/pull/1157) | [`--mptcp`](https://github.com/shadowsocks/shadowsocks-rust) |
