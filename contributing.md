@@ -86,7 +86,7 @@ git switch export # or export-net for fixes
 b4 prep -n <new branch name>
 # edit your code
 git add -p && git commit -s
-./scripts/checkpatch.pl -g HEAD ## check the output, fix issues with 'git commit --amend'
+b4 prep --check ## check the output, fix issues with 'git commit --amend'
 b4 prep --edit-cover # if you have more than one patch
 b4 send --reflect # check if the mails you sent to yourself are OK
 b4 send
