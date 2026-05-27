@@ -88,6 +88,7 @@ b4 prep -n <new branch name>
 git add -p && git commit -s
 b4 prep --check ## check the output, fix issues with 'git commit --amend'
 b4 prep --edit-cover # if you have more than one patch
+# don't use "b4 prep --auto-to-cc": only send to the MPTCP ML
 b4 send --reflect # check if the mails you sent to yourself are OK
 b4 send
 ```
