@@ -95,7 +95,20 @@ GODEBUG=multipathtcp=1 <command>
   can be used, see [this example](https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git/commit/?id=ddba122428a7).
   But the recommended way to use it is via BCC and its `mptcpify` tool, which
   might be called `mptcpify-bpfcc` on some distributions, and available from the
-  `bcc` or `bpfcc-tools` package. See how to use it
+  `bcc` or `bpfcc-tools` package. Version v0.37.0 has a fix to handle all
+  conditions. It can be used with `-t` to restrict to some apps, e.g.:
+
+  ```console
+$ curl https://check.mptcp.dev
+You are not using MPTCP.
+
+# mptcpify-bpfcc -t curl &
+
+$ curl https://check.mptcp.dev
+You are using MPTCP.
+  ```
+
+  For more examples, please check
   [here](https://github.com/iovisor/bcc/blob/master/tools/mptcpify_example.txt).
 
 - [SystemTap](https://sourceware.org/systemtap/) can also be used to modify the
