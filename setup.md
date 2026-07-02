@@ -91,7 +91,7 @@ GODEBUG=multipathtcp=1 <command>
 
 - [eBPF](https://ebpf.io/what-is-ebpf/): since kernel v6.6, it is possible to
   change the socket being created per cGroup. A small eBPF program -- e.g.
-  [mptcpify](https://elixir.bootlin.com/linux/latest/source/tools/testing/selftests/bpf/progs/mptcpify.c) --
+  [mptcpify](https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git/tree/tools/testing/selftests/bpf/progs/mptcpify.c) --
   can be used, see [this example](https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git/commit/?id=ddba122428a7)
   or [this one](https://github.com/iovisor/bcc/pull/5274).
 
