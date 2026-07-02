@@ -92,8 +92,11 @@ GODEBUG=multipathtcp=1 <command>
 - [eBPF](https://ebpf.io/what-is-ebpf/): since kernel v6.6, it is possible to
   change the socket being created per cGroup. A small eBPF program -- e.g.
   [mptcpify](https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git/tree/tools/testing/selftests/bpf/progs/mptcpify.c) --
-  can be used, see [this example](https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git/commit/?id=ddba122428a7)
-  or [this one](https://github.com/iovisor/bcc/pull/5274).
+  can be used, see [this example](https://git.kernel.org/pub/scm/linux/kernel/git/bpf/bpf-next.git/commit/?id=ddba122428a7).
+  But the recommended way to use it is via BCC and its `mptcpify` tool, which
+  might be called `mptcpify-bpfcc` on some distributions, and available from the
+  `bcc` or `bpfcc-tools` package. See how to use it
+  [here](https://github.com/iovisor/bcc/blob/master/tools/mptcpify_example.txt).
 
 - [SystemTap](https://sourceware.org/systemtap/) can also be used to modify the
   `socket` system call. See this [documentation](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_networking/getting-started-with-multipath-tcp_configuring-and-managing-networking#preparing-rhel-to-enable-mptcp-support_getting-started-with-multipath-tcp)
