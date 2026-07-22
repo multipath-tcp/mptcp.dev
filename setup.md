@@ -98,14 +98,14 @@ GODEBUG=multipathtcp=1 <command>
   `bcc` or `bpfcc-tools` package. Version v0.37.0 has a fix to handle all
   conditions. It can be used with `-t` to restrict to some apps, e.g.:
 
-  ```bash
-$ curl https://check.mptcp.dev
-You are not using MPTCP.
+  ```console
+  $ curl https://check.mptcp.dev
+  You are not using MPTCP.
 
-# mptcpify-bpfcc -t curl &
+  # mptcpify-bpfcc -t curl &
 
-$ curl https://check.mptcp.dev
-You are using MPTCP.
+  $ curl https://check.mptcp.dev
+  You are using MPTCP.
   ```
 
   For more examples, please check
