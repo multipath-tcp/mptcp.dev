@@ -98,7 +98,7 @@ GODEBUG=multipathtcp=1 <command>
   `bcc` or `bpfcc-tools` package. Version v0.37.0 has a fix to handle all
   conditions. It can be used with `-t` to restrict to some apps, e.g.:
 
-  ```console
+  ```bash
 $ curl https://check.mptcp.dev
 You are not using MPTCP.
 
