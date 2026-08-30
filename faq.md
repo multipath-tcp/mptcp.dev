@@ -297,8 +297,8 @@ workarounds: </summary>
 
 ## My server app rejects the creation of new subflows
 
-There could be different reasons to that, but here are the common ones:
-- The in-kernel path-manager [limits](/pm.html#limits) might need to be too low
+There could be different reasons for that, but here are the common ones:
+- The in-kernel path-manager [limits](/pm.html#limits) might be too low.
 - The server app might decide to close the listening socket after the first
   connection. That's what Netcat does by default with `nc -l`, except if `-k` is
   passed. The MPTCP stack in the Linux kernel relies on listening sockets for
