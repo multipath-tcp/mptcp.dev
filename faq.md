@@ -294,3 +294,43 @@ workarounds: </summary>
         ProxyCommand /path/to/mptcp_fdpass.py %h %p
     ```
 </details> {: .ctsm}
+
+## My server app rejects the creation of new subflows
+
+There could be different reasons for that, but here are the common ones:
+- The in-kernel path-manager [limits](/pm.html#limits) might be too low.
+- The server app might decide to close the listening socket after the first
+  connection. That's what Netcat does by default with `nc -l`, except if `-k` is
+  passed. The MPTCP stack in the Linux kernel relies on listening sockets for
+  the join requests.
+- If your server announces multiple addresses, firewall rules or the app config
+  might reject join requests sent to the extra addresses. For example, the
+  server app might restrict connections to a specific IP address or family
+  (IPv4/IPv6 only) during the `bind()` call, while the MPTCP join request might
+  come from another IP address or family. To fix that, either configure the
+  server app to remove these restrictions or to have multiple listen sockets.
+  Note that the MPTCP stack in the Linux kernel relies on listening sockets for
+  the join requests, but they don't need to be from the same app: it is fine to
+  manually create additional listening sockets bound to different IP addresses
+  and/or families, e.g.
+  ```python
+  import socket
+  s = socket.socket(socket.AF_INET6, socket.SOCK_STREAM, socket.IPPROTO_MPTCP)
+  s.bind(('2001:db8::1', 1234))
+  s.listen(0)
+  ```
+- Linked to the previous point: if your server is behind a NAT, the server
+  should announce the public IP address, and your NAT should redirect requests
+  to your server.
+- Similarly, if your server is behind a load balancer, it might need to be
+  configured to support MPTCP, or dedicate special IP addresses and/or ports.
+  See [this dedicated page](/load-balancer.html) for more details about that.
+- One of the path might have middleboxes stripping MPTCP options: check with
+  a packet trace (WireShark, TCPDump, etc.) to see if packets are received with
+  MPTCP options. [Tracebox](http://www.tracebox.org) might help to detect
+  middleboxes stripping MPTCP options, e.g.
+  ```
+  docker run -it --rm matttbe/tracebox:latest -p 'IP/tcp{dst=443}/MPCAPABLE' www.multipath-tcp.org
+  ```
+  And check if `-TCPOptionMPTCPCapable` are visible before reaching the final
+  host, which means the MPTCP Capable option has been stripped.
